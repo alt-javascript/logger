@@ -1,3 +1,4 @@
+[![NPM](https://nodei.co/npm/config.svg?downloads=true&downloadRank=true)](https://nodei.co/npm/config/)&nbsp;&nbsp;
 ![Language Badge](https://img.shields.io/github/languages/top/craigparra/alt-logger)
 ![Package Badge](https://img.shields.io/npm/v/@alt-javascript/logger)
 # <a name="home"></a>@alt-javascript/logger
