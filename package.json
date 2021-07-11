@@ -1,7 +1,12 @@
 {
   "name": "@alt-javascript/logger",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A simple logging facade for javascript.",
+  "homepage": "https://github.com/craigparra/alt-logger#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/craigparra/alt-logger"
+  },
   "main": "index.js",
   "scripts": {
     "lint": "npx eslint \"./*.js\" \"./test/**/*.js\" --fix",
