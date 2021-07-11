@@ -1,7 +1,8 @@
 {
   "name": "@alt-javascript/logger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple logging facade for javascript.",
+  "keywords": ["log","logger","LogFactory","facade"],
   "homepage": "https://github.com/craigparra/alt-logger#readme",
   "repository": {
     "type": "git",
