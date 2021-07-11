@@ -3,8 +3,8 @@ const LoggerFactory = require('../LoggerFactory');
 const LoggerLevel = require('../LoggerLevel');
 const WinstonLogger = require('../WinstonLogger');
 
-const logger = LoggerFactory.getLogger('@alt/logger/test/winston_spec', null, new WinstonLogger());
-const verbose = LoggerFactory.getLogger('@alt/logger/test/winston_spec/verbose', null, new WinstonLogger());
+const logger = LoggerFactory.getLogger('@alt-javascript/logger/test/winston_spec', null, new WinstonLogger());
+const verbose = LoggerFactory.getLogger('@alt-javascript/logger/test/winston_spec/verbose', null, new WinstonLogger());
 
 assert.isTrue(logger.isVerboseEnabled(), 'Verbose is false');
 logger.setLevel(null);

@@ -3,15 +3,15 @@
   "loggerging" : {
      "level" : {
        "/" : "info",
-       "@alt/logger" : "info",
-       "@alt/logger/Logger" : "info",
-       "@alt/logger/LoggerLevel" : "error",
-       "@alt/logger/LoggerFactory" : "debug",
-       "@alt/logger/test/console_spec" : "info",
-       "@alt/logger/test/console_spec/verbose" : "verbose",
-       "@alt/logger/test/winston_spec" : "info",
-       "@alt/logger/test/winston_spec/verbose" : "verbose",
-       "@alt/logger/test/fixtures/index" : "info"
+       "@alt-javascript/logger" : "info",
+       "@alt-javascript/logger/Logger" : "info",
+       "@alt-javascript/logger/LoggerLevel" : "error",
+       "@alt-javascript/logger/LoggerFactory" : "debug",
+       "@alt-javascript/logger/test/console_spec" : "info",
+       "@alt-javascript/logger/test/console_spec/verbose" : "verbose",
+       "@alt-javascript/logger/test/winston_spec" : "info",
+       "@alt-javascript/logger/test/winston_spec/verbose" : "verbose",
+       "@alt-javascript/logger/test/fixtures/index" : "info"
      }
   }
 }

@@ -2,12 +2,12 @@ const { assert } = require('chai');
 const LoggerFactory = require('../LoggerFactory');
 const LoggerLevel = require('../LoggerLevel');
 
-const logger = LoggerFactory.getLogger('@alt/logger/test/console_spec');
+const logger = LoggerFactory.getLogger('@alt-javascript/logger/test/console_spec');
 const defaultLogger = LoggerFactory.getLogger();
 defaultLogger.registry.add('logging.level./', LoggerLevel.DEBUG);
 const altDefaultLogger = LoggerFactory.getLogger();
 
-const verbose = LoggerFactory.getLogger('@alt/logger/test/console_spec/verbose');
+const verbose = LoggerFactory.getLogger('@alt-javascript/logger/test/console_spec/verbose');
 
 assert.isFalse(logger.isVerboseEnabled(), 'Verbose is false');
 logger.setLevel(null);
