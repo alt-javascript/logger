@@ -4,7 +4,7 @@ const Logger = require('./Logger');
 const LoggerLevel = require('./LoggerLevel');
 
 module.exports = class WinstonLogger extends Logger {
-  constructor(level, meta, levels, options) {
+  constructor(options, level, meta, levels) {
     super(levels, level);
     this.meta = meta;
     this.options = options || {

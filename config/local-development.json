@@ -1,6 +1,6 @@
 {
   "key": "value",
-  "loggerging" : {
+  "logger" : {
      "level" : {
        "/" : "info",
        "@alt-javascript/logger" : "info",
