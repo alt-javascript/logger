@@ -61,6 +61,10 @@ While the LoggerFactory uses sensible defaults, it is flexible and pluggable.  T
 [winston](https://www.npmjs.com/package/winston) package you can pass a `WinstonLogger` provider to the `getLogger`
 function, passing it your winston options (nullish options will fall back to defaults).
 
+>Be aware [winston](https://www.npmjs.com/package/winston) is not included as a package dependency for 
+> [@alt-javascript/logger](https://www.npmjs.com/package/@alt-javascript/logger) to keep it light-weight.
+    
+
 ```javascript
 const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new WinstonLogger({/*mywinstonoptions*/}));
