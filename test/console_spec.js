@@ -19,38 +19,38 @@ if (logger.isDebugEnabled()) {
 const spec = logger.category;
 
 before(async () => {
-  logger.debug(`${spec} spec setup started`);
+  logger.debug(`spec setup started`);
   // ..
-  logger.debug(`${spec} spec setup completed`);
+  logger.debug(`spec setup completed`);
 });
 
 beforeEach(async () => {
-  logger.debug(`${spec} spec setup started`);
+  logger.debug(`spec setup started`);
   // ..
-  logger.debug(`${spec} spec setup completed`);
+  logger.debug(`spec setup completed`);
 });
 
 after(async () => {
-  logger.debug(`${spec} each teardown started`);
+  logger.debug(`each teardown started`);
   // ...
-  logger.debug(`${spec} each teardown completed`);
+  logger.debug(`each teardown completed`);
 });
 
 beforeEach(async () => {
-  logger.debug(`${spec} each setup started`);
+  logger.debug(`each setup started`);
   // ..
-  logger.debug(`${spec} each setup completed`);
+  logger.debug(`each setup completed`);
 });
 
 describe('Console Log Package Tests', () => {
   it('Log levels', () => {
-    logger.log(LoggerLevel.INFO, `${spec} this is a log message`);
-    logger.debug(`${spec} this is a debug message`);
-    logger.verbose(`${spec} this is a verbose message`);
-    logger.info(`${spec} this is an info message`);
-    logger.warn(`${spec} this is a warn message`);
-    logger.error(`${spec} this is an error message`);
-    logger.fatal(`${spec} this is a fatal message`);
+    logger.log(LoggerLevel.INFO, `this is a log message`);
+    logger.debug(`this is a debug message`);
+    logger.verbose(`this is a verbose message`);
+    logger.info(`this is an info message`);
+    logger.warn(`this is a warn message`);
+    logger.error(`this is an error message`);
+    logger.fatal(`this is a fatal message`);
   });
   it('Log levels enabled', () => {
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'debug is false');
@@ -63,12 +63,12 @@ describe('Console Log Package Tests', () => {
   });
 
   it('Default Logger', () => {
-    defaultLogger.debug(`${spec} this is a debug message`);
-    defaultLogger.verbose(`${spec} this is a verbose message`);
-    defaultLogger.info(`${spec} this is an info message`);
-    defaultLogger.warn(`${spec} this is a warn message`);
-    defaultLogger.error(`${spec} this is an error message`);
-    defaultLogger.fatal(`${spec} this is a fatal message`);
+    defaultLogger.debug(`this is a debug message`);
+    defaultLogger.verbose(`this is a verbose message`);
+    defaultLogger.info(`this is an info message`);
+    defaultLogger.warn(`this is a warn message`);
+    defaultLogger.error(`this is an error message`);
+    defaultLogger.fatal(`this is a fatal message`);
     assert.isFalse(defaultLogger.isDebugEnabled(), 'debug is false');
     assert.isTrue(altDefaultLogger.isDebugEnabled(), 'debug is true for alt');
     assert.isFalse(defaultLogger.isVerboseEnabled(), 'Verbose is false');
@@ -79,7 +79,7 @@ describe('Console Log Package Tests', () => {
   });
 
   it('Verbose Logger', () => {
-    verbose.debug(`${spec} this is a debug message`);
-    verbose.verbose(`${spec} this is a verbose message`);
+    verbose.debug(`this is a debug message`);
+    verbose.verbose(`this is a verbose message`);
   });
 });

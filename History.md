@@ -1,3 +1,11 @@
+1.0.4 / 2021-07-12
+==================
+
+* Fixed JSON outputs to proper keyval pairs, plus category output - @craigparra
+* JSON and PlainText formatters - @craigparra
+* Added EphemeralLogger for testability - @craigparra
+* Added MultiLogger - @craigparra
+
 1.0.3 / 2021-07-12
 ==================
 

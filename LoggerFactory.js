@@ -7,7 +7,7 @@ module.exports = class LoggerFactory {
 
     static getLogger(category, provider, configPath, registry) {
       return new ConfigurableLogger(
-        provider || new ConsoleLogger(),
+        provider || new ConsoleLogger(category),
         category,
         configPath,
         registry || LoggerFactory.loggerRegistry,

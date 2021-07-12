@@ -1,10 +1,11 @@
-const _ = require('lodash');
 const Logger = require('./Logger');
 const LoggerLevel = require('./LoggerLevel');
+const JSONFormatter = require('./JSONFormatter');
 
 module.exports = class ConsoleLogger extends Logger {
-  constructor(level, meta, levels) {
-    super(levels, level);
+  constructor(category,level, formatter, meta, levels) {
+    super(category,level,levels);
+    this.formatter = formatter || new JSONFormatter();
     this.meta = meta || {};
 
     ConsoleLogger.prototype.setLevel = Logger.prototype.setLevel;
@@ -20,10 +21,7 @@ module.exports = class ConsoleLogger extends Logger {
   log(level, message, meta) {
     if (this.levels[level] <= this.level) {
       // eslint-disable-next-line no-console
-      console.log(JSON.stringify(
-        _.assignIn({ level, message, timestamp: (new Date()) },
-          _.assignIn(meta, this.meta)),
-      ));
+      console.log(this.formatter.format((new Date()),this.category,level,message,meta));
     }
   }
 
