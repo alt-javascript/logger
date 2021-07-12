@@ -1,13 +1,19 @@
+A Simple Log Facade for JavaScript
+===================================
+
 [![NPM](https://nodei.co/npm/@alt-javascript/logger.svg?downloads=true&downloadRank=true)](https://nodei.co/npm/@alt-javascript/logger/)
 <br/>
 ![Language Badge](https://img.shields.io/github/languages/top/craigparra/alt-logger)
 ![Package Badge](https://img.shields.io/npm/v/@alt-javascript/logger)
-# <a name="home"></a>@alt-javascript/logger
+[release notes](https://raw.githubusercontent.com/craigparra/alt-logger/master/History.md).
 
+<a name="intro">Introduction</a>
+--------------------------------
 A simple configurable logging facade for javascript, using the popular [config](https://www.npmjs.com/package/config)
 package interface.
 
-## Usage
+<a name="usge">Usage</a>
+-------------------------
 
 To use the module, import the LoggerFactory and call the `getLogger` function with a logging category (your module 
 requires path is a sensible choice).
@@ -57,7 +63,8 @@ if (logger.isDebugEnabled()){
     logger.debug(`This a performance impacting logline => ${costlyFunction()}`)
 }
 ```
-## Configuring
+<a name="conf">Configuring</a>
+------------------------------
 
 While the LoggerFactory uses sensible defaults, it is flexible and pluggable.  To use the popular 
 [winston](https://www.npmjs.com/package/winston) package you can pass a `WinstonLogger` provider to the `getLogger`
@@ -73,4 +80,10 @@ const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new WinstonL
 
 logger.info('Hello world!');
 ```
-    
+
+<a name="license">License</a>
+-----------------------------
+
+May be freely distributed under the [MIT license](https://raw.githubusercontent.com/craigparra/alt-logger/master/LICENSE).
+
+Copyright (c) 2021 Craig Parravicini    
