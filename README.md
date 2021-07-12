@@ -94,8 +94,7 @@ logger.info('Hello world!');
 <a name="testing">Testability</a>
 -------------------------
 
-Testing loggers is hard, and testability is a first class concern at @alt-javascript so the logging facade, 
-and the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
+Testing loggers is hard, and testability is a first class concern at @alt-javascript so the logging the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
 
 ```javascript
 const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
