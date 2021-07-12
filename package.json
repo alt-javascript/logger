@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "description": "A simple configurable logging facade for javascript.",
   "author" : "Craig Parravicini",
-  "keywords": ["log","logger","loglevel", "loggerlevel","LogFactory","facade","config","configurable"],
+  "keywords": ["log","logger","loglevel", "loggerlevel","LogFactory","facade","config","configurable","slf4j"],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
