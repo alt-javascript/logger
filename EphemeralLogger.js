@@ -4,7 +4,7 @@ const JSONFormatter = require('./JSONFormatter');
 const EphemeralLogSink = require('./EphemeralLogSink');
 
 module.exports = class EphemeralLogger extends Logger {
-  constructor(category, level, formatter, meta, levels) {
+  constructor(category, formatter, level, meta, levels) {
     super(category, level, levels);
     this.formatter = formatter || new JSONFormatter();
     this.meta = meta || {};

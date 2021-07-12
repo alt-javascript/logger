@@ -12,7 +12,7 @@ A Simple Log Facade for JavaScript
 A simple configurable logging facade for javascript, using the popular [config](https://www.npmjs.com/package/config)
 package interface.
 
-<a name="usge">Usage</a>
+<a name="usage">Usage</a>
 -------------------------
 
 To use the module, import the LoggerFactory and call the `getLogger` function with a logging category (your module 
@@ -79,6 +79,34 @@ const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new WinstonLogger({/*mywinstonoptions*/}));
 
 logger.info('Hello world!');
+```
+
+The `ConsoleLogger` uses a JSONFormatter, but a PlainTextFormatter (or similar implementation) can easily be
+substituted.
+
+```javascript
+const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
+const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new ConsoleLogger('@myorg/mypackage/MyModule',new PlainTextFromatter()));
+
+logger.info('Hello world!');
+```
+
+<a name="testing">Testability</a>
+-------------------------
+
+Testing loggers is hard, and testability is a first class concern at @alt-javascript so the logging facade, 
+and the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
+
+```javascript
+const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
+const ephemeralLogger = new EphemeralLogger('@myorg/mypackage/MyModule');
+const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', ephemeralLogger);
+
+logger.info('Hello world!');
+
+//...
+
+assert.isTrue(ephemeralLogger.sink.lines[0].contains('Hello world!'))
 ```
 
 <a name="license">License</a>
