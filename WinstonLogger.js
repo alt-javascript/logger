@@ -1,12 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const _ = require('lodash');
 const winston = require('winston');
+const _ = require('lodash');
 const Logger = require('./Logger');
 const LoggerLevel = require('./LoggerLevel');
 
 module.exports = class WinstonLogger extends Logger {
-  constructor(category,options, level, meta, levels) {
-    super(category,level,levels);
+  constructor(category, options, level, meta, levels) {
+    super(category, level, levels);
     this.meta = meta || {};
     this.options = options || {
       level: level || 'info',
@@ -38,8 +38,8 @@ module.exports = class WinstonLogger extends Logger {
   }
 
   log(level, message, meta) {
-    let metaWithCategory = _.assignIn({},_.assignIn(meta, {category:this.category}))
-    this.winston.log({ level, message, meta: metaWithCategory});
+    const metaWithCategory = _.assignIn({}, _.assignIn(meta, { category: this.category }));
+    this.winston.log({ level, message, meta: metaWithCategory });
   }
 
   debug(message, meta) {

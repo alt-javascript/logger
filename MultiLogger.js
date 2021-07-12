@@ -1,12 +1,9 @@
 const Logger = require('./Logger');
 const LoggerLevel = require('./LoggerLevel');
-const JSONFormatter = require('./JSONFormatter');
-const EphemeralLogSink = require('./EphemeralLogSink');
 
 module.exports = class MultiLogger extends Logger {
-
-  constructor(loggers, category,level, formatter, meta, levels) {
-    super(category,level,levels);
+  constructor(loggers, category, level, formatter, meta, levels) {
+    super(category, level, levels);
     this.loggers = loggers || [];
 
     MultiLogger.prototype.setLevel = Logger.prototype.setLevel;
@@ -21,7 +18,7 @@ module.exports = class MultiLogger extends Logger {
 
   log(level, message, meta) {
     if (this.levels[level] <= this.level) {
-      for (let i=0;i<this.loggers.length;i++){
+      for (let i = 0; i < this.loggers.length; i++) {
         this.loggers.log(level, message, meta);
       }
     }

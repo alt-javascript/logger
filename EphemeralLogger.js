@@ -4,9 +4,8 @@ const JSONFormatter = require('./JSONFormatter');
 const EphemeralLogSink = require('./EphemeralLogSink');
 
 module.exports = class EphemeralLogger extends Logger {
-
-  constructor(category,level, formatter, meta, levels) {
-    super(category,level,levels);
+  constructor(category, level, formatter, meta, levels) {
+    super(category, level, levels);
     this.formatter = formatter || new JSONFormatter();
     this.meta = meta || {};
     this.sink = new EphemeralLogSink();
@@ -23,7 +22,7 @@ module.exports = class EphemeralLogger extends Logger {
 
   log(level, message, meta) {
     if (this.levels[level] <= this.level) {
-      this.sink.log(this.formatter.format((new Date()),this.category,level,message,meta));
+      this.sink.log(this.formatter.format((new Date()), this.category, level, message, meta));
     }
   }
 
