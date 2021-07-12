@@ -105,7 +105,7 @@ logger.info('Hello world!');
 
 //...
 
-assert.isTrue(ephemeralLogger.sink.lines[0].contains('Hello world!'))
+assert.isTrue(ephemeralLogger.sink.loglines[0].contains('Hello world!'))
 ```
 
 <a name="license">License</a>
