@@ -85,7 +85,7 @@ The `ConsoleLogger` uses a JSONFormatter, but a PlainTextFormatter (or similar i
 substituted.
 
 ```javascript
-const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
+const {LoggerFactory,ConsoleLogger} = require('@alt-javascript/logger');
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new ConsoleLogger('@myorg/mypackage/MyModule',new PlainTextFromatter()));
 
 logger.info('Hello world!');
