@@ -1,3 +1,8 @@
+1.0.6 / 2021-07-14
+==================
+
+* Fixed testability example to use ConsoleLogger - @craigparra
+  
 1.0.5 / 2021-07-14
 ==================
 
