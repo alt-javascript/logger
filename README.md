@@ -85,7 +85,7 @@ The `ConsoleLogger` uses a JSONFormatter, but a PlainTextFormatter (or similar i
 substituted.
 
 ```javascript
-const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
+const {LoggerFactory,ConsoleLogger} = require('@alt-javascript/logger');
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new ConsoleLogger('@myorg/mypackage/MyModule',new PlainTextFromatter()));
 
 logger.info('Hello world!');
@@ -94,8 +94,7 @@ logger.info('Hello world!');
 <a name="testing">Testability</a>
 -------------------------
 
-Testing loggers is hard, and testability is a first class concern at @alt-javascript so the logging facade, 
-and the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
+Testing loggers is hard, and testability is a first class concern at @alt-javascript so the logging the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
 
 ```javascript
 const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
@@ -106,7 +105,7 @@ logger.info('Hello world!');
 
 //...
 
-assert.isTrue(ephemeralLogger.sink.lines[0].contains('Hello world!'))
+assert.isTrue(ephemeralLogger.sink.loglines[0].contains('Hello world!'))
 ```
 
 <a name="license">License</a>
