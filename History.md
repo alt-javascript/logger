@@ -1,4 +1,10 @@
-1.0.4 / 2021-07-12
+1.0.5 / 2021-07-14
+==================
+
+* Fixed usage example to use ConsoleLogger - @craigparra
+* Added slf4j keyword - @craigparra
+  
+``1.0.4 / 2021-07-12
 ==================
 
 * Fixed JSON outputs to proper keyval pairs, plus category output - @craigparra
