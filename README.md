@@ -88,8 +88,9 @@ The `ConsoleLogger` uses a JSONFormatter, but a PlainTextFormatter (or similar i
 substituted.
 
 ```javascript
+const {config} = require('config');
 const {LoggerFactory,ConsoleLogger} = require('@alt-javascript/logger');
-const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new ConsoleLogger('@myorg/mypackage/MyModule',new PlainTextFromatter()));
+const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule', new ConsoleLogger('@myorg/mypackage/MyModule',new PlainTextFromatter()));
 
 logger.info('Hello world!');
 ```
