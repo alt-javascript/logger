@@ -1,3 +1,8 @@
+1.0.7 / 2021-07-14
+==================
+
+* Removed top-level export of WinstonLogger  - @craigparra
+  
 1.0.6 / 2021-07-14
 ==================
 
