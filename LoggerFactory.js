@@ -5,8 +5,8 @@ const LoggerRegistry = require('./LoggerRegistry');
 module.exports = class LoggerFactory {
     static loggerRegistry = new LoggerRegistry();
 
-    static getLogger(category, provider, configPath, registry) {
-      return new ConfigurableLogger(
+    static getLogger(config, category, provider, configPath, registry) {
+      return new ConfigurableLogger(config,
         provider || new ConsoleLogger(category),
         category,
         configPath,

@@ -19,8 +19,9 @@ To use the module, import the LoggerFactory and call the `getLogger` function wi
 requires path is a sensible choice).
 
 ```javascript
+const {config} = require('config');
 const {LoggerFactory} = require('@alt-javascript/logger');
-const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule');
+const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule');
 
 logger.info('Hello world!');
 ```
@@ -76,8 +77,9 @@ function, passing it your winston options (nullish options will fall back to def
     
 
 ```javascript
+const {config} = require('config');
 const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
-const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', new WinstonLogger({/*mywinstonoptions*/}));
+const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule', new WinstonLogger({/*mywinstonoptions*/}));
 
 logger.info('Hello world!');
 ```
@@ -98,9 +100,10 @@ logger.info('Hello world!');
 Testing loggers is hard, and testability is a first class concern at @alt-javascript so the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
 
 ```javascript
+const {config} = require('config');
 const {LoggerFactory,EphemeralLogger} = require('@alt-javascript/logger');
 const ephemeralLogger = new EphemeralLogger('@myorg/mypackage/MyModule');
-const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', ephemeralLogger);
+const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule', ephemeralLogger);
 
 logger.info('Hello world!');
 

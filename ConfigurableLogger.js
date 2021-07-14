@@ -2,9 +2,9 @@ const CONFIG = require('config');
 const DelegatingLogger = require('./DelegatingLogger');
 
 module.exports = class ConfigurableLogger extends DelegatingLogger {
-  constructor(provider, category, configPath, registry, config) {
+  constructor(config, provider, category, configPath, registry) {
     super(provider);
-    this.config = config || CONFIG;
+    this.config = config;
     this.category = category;
     this.configPath = configPath;
     this.registry = registry;

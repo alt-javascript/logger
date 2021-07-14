@@ -1,10 +1,11 @@
+const config = require('config');
 const { assert } = require('chai');
 const LoggerFactory = require('../LoggerFactory');
 const LoggerLevel = require('../LoggerLevel');
 const WinstonLogger = require('../WinstonLogger');
 
-const logger = LoggerFactory.getLogger('@alt-javascript/logger/test/winston_spec', new WinstonLogger('@alt-javascript/logger/test/winston_spec'));
-const verbose = LoggerFactory.getLogger('@alt-javascript/logger/test/winston_spec/verbose', new WinstonLogger('@alt-javascript/logger/test/winston_spec/verbose'));
+const logger = LoggerFactory.getLogger(config,'@alt-javascript/logger/test/winston_spec', new WinstonLogger('@alt-javascript/logger/test/winston_spec'));
+const verbose = LoggerFactory.getLogger(config,'@alt-javascript/logger/test/winston_spec/verbose', new WinstonLogger('@alt-javascript/logger/test/winston_spec/verbose'));
 
 assert.isTrue(logger.isVerboseEnabled(), 'Verbose is false');
 logger.setLevel(null);

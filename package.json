@@ -2,8 +2,18 @@
   "name": "@alt-javascript/logger",
   "version": "1.0.6",
   "description": "A simple configurable logging facade for javascript.",
-  "author" : "Craig Parravicini",
-  "keywords": ["log","logger","loglevel", "loggerlevel","LogFactory","facade","config","configurable","slf4j"],
+  "author": "",
+  "keywords": [
+    "log",
+    "logger",
+    "loglevel",
+    "loggerlevel",
+    "LogFactory",
+    "facade",
+    "config",
+    "configurable",
+    "slf4j"
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -22,7 +32,6 @@
     "mocha": "mocha --require test/fixtures",
     "nyc": "nyc --reporter=json-summary --reporter=text-summary --reporter=lcov npm run test"
   },
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "config": "^3.3.6",
