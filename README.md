@@ -32,7 +32,7 @@ following in your [config](https://www.npmjs.com/package/config) files.
 `local-development.json`
 ```json
 {
-  "logger" : {
+  "logging" : {
      "level" : {
        "/" : "info",
        "@myorg/mypackage/MyModule" : "debug"

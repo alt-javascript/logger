@@ -1,3 +1,8 @@
+1.0.9 / 2021-07-14
+==================
+
+* Correct config to logging.level path  - @craigparra
+  
 1.0.8 / 2021-07-14
 ==================
 
