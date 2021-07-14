@@ -110,7 +110,7 @@ assert.isTrue(ephemeralLogger.sink.loglines[0].contains('Hello world!'))
 <a name="resources">Resources</a>
 ---------------------------------
 
-### Module Dependecies
+### Module Dependencies
 
 
 ![Module Diagram](.md/modules.png)
