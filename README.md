@@ -97,7 +97,7 @@ logger.info('Hello world!');
 Testing loggers is hard, and testability is a first class concern at @alt-javascript so the logging the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
 
 ```javascript
-const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
+const {LoggerFactory,EphemeralLogger} = require('@alt-javascript/logger');
 const ephemeralLogger = new EphemeralLogger('@myorg/mypackage/MyModule');
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule', ephemeralLogger);
 
