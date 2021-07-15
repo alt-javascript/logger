@@ -115,10 +115,9 @@ assert.isTrue(ephemeralLogger.sink.loglines[0].contains('Hello world!'))
 <a name="resources">Resources</a>
 ---------------------------------
 
-### Module Dependencies
+A [Deign Trail](https://github.com/craigparra/alt-javascript/blob/master/LOGGING.md) is available for this
+module at [https://github.com/craigparra/alt-javascript/blob/master/LOGGING.md](https://github.com/craigparra/alt-javascript/blob/master/LOGGING.md)
 
-
-![Module Diagram](.md/modules.png)
 
 <a name="license">License</a>
 -----------------------------
