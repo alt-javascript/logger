@@ -9,5 +9,3 @@ module.exports.LoggerFactory = require('./LoggerFactory');
 module.exports.LoggerLevel = require('./LoggerLevel');
 module.exports.LoggerRegistry = require('./LoggerRegistry');
 module.exports.PlainTextFormatter = require('./PlainTextFormatter');
-
-

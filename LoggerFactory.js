@@ -10,7 +10,6 @@ module.exports = class LoggerFactory {
         provider || new ConsoleLogger(category),
         category,
         configPath,
-        registry || LoggerFactory.loggerRegistry,
-      );
+        registry || LoggerFactory.loggerRegistry);
     }
 };

@@ -1,4 +1,3 @@
-const CONFIG = require('config');
 const DelegatingLogger = require('./DelegatingLogger');
 
 module.exports = class ConfigurableLogger extends DelegatingLogger {
