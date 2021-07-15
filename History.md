@@ -1,3 +1,10 @@
+1.0.11 / 2021-07-15
+==================
+
+* refer to design trail, remove module diagram - @craigparra
+* removed redundant CONFIG requires - @craigparra
+* Link to Design Trail - @craigparra
+
 1.0.10 / 2021-07-14
 ==================
 

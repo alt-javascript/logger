@@ -115,8 +115,9 @@ assert.isTrue(ephemeralLogger.sink.loglines[0].contains('Hello world!'))
 <a name="resources">Resources</a>
 ---------------------------------
 
-A useful [Design Trail](https://github.com/craigparra/alt-javascript/blob/master/LOGGING.md) is available for this
-module. 
+<https://github.com/craigparra/alt-javascript>  has a 
+useful [Design Trail](https://github.com/craigparra/alt-javascript/blob/master/LOGGING.md) available for this
+module.
 
 
 <a name="license">License</a>
