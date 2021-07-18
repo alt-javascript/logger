@@ -1,7 +1,8 @@
 module.exports = class CachingConsole {
-  constructor(cache, size) {
+  constructor(cache, size,quiet) {
     this.cache = cache || [];
     this.size = size || 1000;
+    this.quiet = quiet;
   }
 
   log(line) {
@@ -9,7 +10,9 @@ module.exports = class CachingConsole {
     if (this.cache.length > this.size) {
       this.cache.pop();
     }
-    // eslint-disable-next-line no-console
-    console.log(line);
+    if (!this.quiet){
+      // eslint-disable-next-line no-console
+      console.log(line);
+    }
   }
 };
