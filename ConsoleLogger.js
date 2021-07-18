@@ -3,7 +3,7 @@ const LoggerLevel = require('./LoggerLevel');
 const JSONFormatter = require('./JSONFormatter');
 
 module.exports = class ConsoleLogger extends Logger {
-  constructor(category, formatter, level, meta, levels, consoleArg) {
+  constructor(category, level, levels, meta, formatter, consoleArg) {
     super(category, level, levels);
     this.formatter = formatter || new JSONFormatter();
     this.meta = meta || {};

@@ -1,18 +1,24 @@
 module.exports = class CachingConsole {
-  constructor(cache, size,quiet) {
-    this.cache = cache || [];
-    this.size = size || 1000;
-    this.quiet = quiet;
+
+  static DEFAULT_SIZE = 1000;
+  constructor(size,quiet) {
+    this.cache =  [];
+    this.size = size || CachingConsole.DEFAULT_SIZE;
+    this.quiet = quiet == null ? true : quiet;
   }
 
   log(line) {
-    this.cache.unshift(line);
+    this.cache.push(line);
     if (this.cache.length > this.size) {
-      this.cache.pop();
+      this.cache.shift();
     }
     if (!this.quiet){
       // eslint-disable-next-line no-console
       console.log(line);
     }
+  }
+
+  clear (){
+    this.cache = [];
   }
 };

@@ -4,35 +4,35 @@ const LoggerLevel = require('../LoggerLevel');
 const LoggerFactory = require('../LoggerFactory');
 
 const config = require('config');
-const logger = LoggerFactory.getLogger('@alt-javascript/logger/test/Logger_spec',config);
+const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/Logger_spec',config);
 
 before(async () => {
-  logger.debug('spec setup started');
+  loggr.debug('spec setup started');
   // ..
-  logger.debug('spec setup completed');
+  loggr.debug('spec setup completed');
 });
 
 beforeEach(async () => {
-  logger.debug('spec setup started');
+  loggr.debug('spec setup started');
   // ..
-  logger.debug('spec setup completed');
+  loggr.debug('spec setup completed');
 });
 
 after(async () => {
-  logger.debug('each teardown started');
+  loggr.debug('each teardown started');
   // ...
-  logger.debug('each teardown completed');
+  loggr.debug('each teardown completed');
 });
 
 beforeEach(async () => {
-  logger.debug('each setup started');
+  loggr.debug('each setup started');
   // ..
-  logger.debug('each setup completed');
+  loggr.debug('each setup completed');
 });
 
 describe('Logger Specification', () => {
   it('Instantiate - constructor args are set', () => {
-    let logger = new Logger('ROOT',LoggerLevel.DEBUG,LoggerLevel.ENUMS);
+    const logger = new Logger('ROOT',LoggerLevel.DEBUG,LoggerLevel.ENUMS);
 
     assert.equal(logger.category, 'ROOT', 'logger.category === \'ROOT\'');
     assert.equal(logger.levels, LoggerLevel.ENUMS, 'logger.levels === LoggerLevel.ENUMS');
@@ -40,7 +40,7 @@ describe('Logger Specification', () => {
   });
 
   it('Instantiate - default constructor args are set', () => {
-    let logger = new Logger();
+    const logger = new Logger();
 
     assert.equal(logger.category, 'ROOT', 'logger.category === \'ROOT\'');
     assert.equal(logger.levels, LoggerLevel.ENUMS, 'logger.levels === LoggerLevel.ENUMS');
@@ -48,13 +48,13 @@ describe('Logger Specification', () => {
   });
 
   it('setLevel', () => {
-    let logger = new Logger();
+    const logger = new Logger();
     logger.setLevel(LoggerLevel.DEBUG);
     assert.equal(logger.level, LoggerLevel.ENUMS[LoggerLevel.DEBUG], 'logger.level === LoggerLevels.ENUMS[LoggerLevel.DEBUG]');
   });
 
-  it('Log levels - debug', () => {
-    let logger = new Logger('ROOT',LoggerLevel.DEBUG);
+  it('Check levels - debug', () => {
+    const logger = new Logger('ROOT',LoggerLevel.DEBUG);
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -70,8 +70,8 @@ describe('Logger Specification', () => {
     assert.isTrue(logger.isFatalEnabled(), 'Fatal is true');
   });
 
-  it('Log levels - verbose', () => {
-    let logger = new Logger('ROOT',LoggerLevel.VERBOSE);
+  it('Check levels - verbose', () => {
+    const logger = new Logger('ROOT',LoggerLevel.VERBOSE);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -87,8 +87,8 @@ describe('Logger Specification', () => {
     assert.isTrue(logger.isFatalEnabled(), 'Fatal is true');
   });
 
-  it('Log levels - info', () => {
-    let logger = new Logger('ROOT',LoggerLevel.INFO);
+  it('Check levels - info', () => {
+    const logger = new Logger('ROOT',LoggerLevel.INFO);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -104,8 +104,8 @@ describe('Logger Specification', () => {
     assert.isTrue(logger.isFatalEnabled(), 'Fatal is true');
   });
 
-  it('Log levels - warn', () => {
-    let logger = new Logger('ROOT',LoggerLevel.WARN);
+  it('Check levels - warn', () => {
+    const logger = new Logger('ROOT',LoggerLevel.WARN);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -121,8 +121,8 @@ describe('Logger Specification', () => {
     assert.isTrue(logger.isFatalEnabled(), 'Fatal is true');
   });
 
-  it('Log levels - error', () => {
-    let logger = new Logger('ROOT',LoggerLevel.ERROR);
+  it('Check levels - error', () => {
+    const logger = new Logger('ROOT',LoggerLevel.ERROR);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -138,8 +138,8 @@ describe('Logger Specification', () => {
     assert.isTrue(logger.isFatalEnabled(), 'Fatal is true');
   });
 
-  it('Log levels - fatal', () => {
-    let logger = new Logger('ROOT',LoggerLevel.FATAL);
+  it('Check levels - fatal', () => {
+    const logger = new Logger('ROOT',LoggerLevel.FATAL);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -154,6 +154,4 @@ describe('Logger Specification', () => {
     assert.isFalse(logger.isErrorEnabled(), 'Error is false');
     assert.isTrue(logger.isFatalEnabled(), 'Fatal is true');
   });
-
-
 });

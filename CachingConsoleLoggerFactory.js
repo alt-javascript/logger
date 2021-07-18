@@ -9,8 +9,8 @@ module.exports = class CachingConsoleLoggerFactory extends LoggerFactory {
         let _configArg = (typeof category == 'string' ? configArg : category);
         return new ConfigurableLogger(LoggerFactory.detectConfig(_configArg),
             new ConsoleLogger(category,
-                LoggerFactory.getFormatter(_configArg),
                 null,null,null,
+                LoggerFactory.getFormatter(_configArg),
                 new CachingConsole()),
             category,
             configPath,
@@ -27,8 +27,8 @@ module.exports = class CachingConsoleLoggerFactory extends LoggerFactory {
     getLogger(category) {
         return new ConfigurableLogger(this.config,
             new ConsoleLogger(category,
-                this.getFormatter(_configArg),
                 null,null,null,
+                this.getFormatter(_configArg),
                 new CachingConsole()),
             category,
             this.configPath,

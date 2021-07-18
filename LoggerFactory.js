@@ -64,7 +64,10 @@ module.exports = class LoggerFactory {
         let _configArg = (typeof category == 'object' ? category : configArg);
         let _category = (typeof category == 'object' ? '' : category);
         return new ConfigurableLogger(this.detectConfig(_configArg),
-          new ConsoleLogger(_category,LoggerFactory.getFormatter(_configArg)),
+          new ConsoleLogger(_category,
+              null,null,null,
+              LoggerFactory.getFormatter(_configArg),
+              null),
             _category,
           configPath,
           registry || LoggerFactory.loggerRegistry);
@@ -78,7 +81,10 @@ module.exports = class LoggerFactory {
 
     getLogger(category) {
         return new ConfigurableLogger(this.config,
-            new ConsoleLogger(category,this.getFormatter()),
+            new ConsoleLogger(category,
+                null,null,null,
+                this.getFormatter(),
+                null),
             category,
             this.configPath,
             this.registry);
