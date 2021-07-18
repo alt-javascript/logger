@@ -102,15 +102,15 @@ Testing loggers is hard, and testability is a first class concern at @alt-javasc
 
 ```javascript
 const {config} = require('config');
-const {LoggerFactory,EphemeralLogger} = require('@alt-javascript/logger');
+const {LoggerFactory, EphemeralLogger} = require('@alt-javascript/logger');
 const ephemeralLogger = new EphemeralLogger('@myorg/mypackage/MyModule');
-const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule', ephemeralLogger);
+const logger = LoggerFactory.getLogger(config, '@myorg/mypackage/MyModule', ephemeralLogger);
 
 logger.info('Hello world!');
 
 //...
 
-assert.isTrue(ephemeralLogger.sink.loglines[0].contains('Hello world!'))
+assert.isTrue(ephemeralLogger.sink.cache[0].contains('Hello world!'))
 ```
 <a name="resources">Resources</a>
 ---------------------------------

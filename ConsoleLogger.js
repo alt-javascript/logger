@@ -3,10 +3,11 @@ const LoggerLevel = require('./LoggerLevel');
 const JSONFormatter = require('./JSONFormatter');
 
 module.exports = class ConsoleLogger extends Logger {
-  constructor(category, formatter, level, meta, levels) {
+  constructor(category, formatter, level, meta, levels, consoleArg) {
     super(category, level, levels);
     this.formatter = formatter || new JSONFormatter();
     this.meta = meta || {};
+    this.console = consoleArg || console;
 
     ConsoleLogger.prototype.setLevel = Logger.prototype.setLevel;
     ConsoleLogger.prototype.isLevelEnabled = Logger.prototype.isLevelEnabled;
@@ -21,7 +22,7 @@ module.exports = class ConsoleLogger extends Logger {
   log(level, message, meta) {
     if (this.levels[level] <= this.level) {
       // eslint-disable-next-line no-console
-      console.log(this.formatter.format((new Date()), this.category, level, message, meta));
+      this.console.log(this.formatter.format((new Date()), this.category, level, message, meta));
     }
   }
 
