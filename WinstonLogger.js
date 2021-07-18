@@ -1,18 +1,17 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-const winston = require('winston');
 const _ = require('lodash');
 const Logger = require('./Logger');
 const LoggerLevel = require('./LoggerLevel');
 
 module.exports = class WinstonLogger extends Logger {
-  constructor(category, options, level, meta, levels) {
+  constructor(category, winston, options, level, meta, levels) {
     super(category, level, levels);
+    this.winston = winston,
     this.meta = meta || {};
     this.options = options || {
       level: level || 'info',
       format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.json(),
+          winston.format.timestamp(),
+          winston.format.json(),
       ),
       defaultMeta: meta || {},
       transports: [
@@ -20,7 +19,7 @@ module.exports = class WinstonLogger extends Logger {
       ],
       levels: levels || this.levels,
     };
-    this.winston = winston.createLogger(this.options);
+    this.winstonLogger = winston.createLogger(this.options);
 
     WinstonLogger.prototype.isLevelEnabled = Logger.prototype.isLevelEnabled;
     WinstonLogger.prototype.isDebugEnabled = Logger.prototype.isDebugEnabled;
@@ -34,12 +33,12 @@ module.exports = class WinstonLogger extends Logger {
   setLevel(level) {
     this.level = this.levels[level || LoggerLevel.INFO];
     this.options.level = level || 'info';
-    this.winston = winston.createLogger(this.options);
+    this.winstonLogger = this.winston.createLogger(this.options);
   }
 
   log(level, message, meta) {
     const metaWithCategory = _.assignIn({}, _.assignIn(meta, { category: this.category }));
-    this.winston.log({ level, message, meta: metaWithCategory });
+    this.winstonLogger.log({ level, message, meta: metaWithCategory });
   }
 
   debug(message, meta) {

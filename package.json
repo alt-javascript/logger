@@ -34,12 +34,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "config": "^3.3.6",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "chai": "^4.3.4",
+    "config": "^3.3.6",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-cucumber": "^1.4.0",
