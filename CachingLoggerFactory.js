@@ -1,14 +1,16 @@
 const ConfigurableLogger = require('./ConfigurableLogger');
 const CachingConsole = require('./CachingConsole');
+const ConsoleLogger = require('./ConsoleLogger');
 const LoggerFactory = require('./LoggerFactory');
 
 
-module.exports = class CachingConsoleLoggerFactory extends LoggerFactory {
+module.exports = class CachingLoggerFactory extends LoggerFactory {
 
-    static getLogger(configArg, category, configPath, registry) {
-        let _configArg = (typeof category == 'string' ? configArg : category);
+    static getLogger(category, configArg, configPath, registry) {
+        let _configArg = (typeof category == 'object' ? category : configArg);
+        let _category = (typeof category == 'object' ? '' : category);
         return new ConfigurableLogger(LoggerFactory.detectConfig(_configArg),
-            new ConsoleLogger(category,
+            new ConsoleLogger(_category,
                 null,null,null,
                 LoggerFactory.getFormatter(_configArg),
                 new CachingConsole()),
@@ -18,10 +20,8 @@ module.exports = class CachingConsoleLoggerFactory extends LoggerFactory {
     }
 
     constructor(config, registry, configPath) {
-        this.config = config;
-        this.registry = registry;
-        this.configPath = configPath;
-        CachingConsoleLoggerFactory.prototype.getFormatter() = LoggerFactory.prototype.getFormatter();
+        super (config, registry, configPath)
+        CachingLoggerFactory.prototype.getFormatter() = LoggerFactory.prototype.getFormatter();
     }
 
     getLogger(category) {
