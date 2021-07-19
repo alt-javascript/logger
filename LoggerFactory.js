@@ -72,7 +72,7 @@ module.exports = class LoggerFactory {
         }
         let _configArg = (typeof category == 'object' ? category : configArg);
         let _category = (typeof category == 'object' ? '' : category);
-        return new ConfigurableLogger(this.detectConfig(_configArg),
+        return new ConfigurableLogger(LoggerFactory.detectConfig(_configArg),
           new ConsoleLogger(_category,
               null,null,null,
               LoggerFactory.getFormatter(_configArg),

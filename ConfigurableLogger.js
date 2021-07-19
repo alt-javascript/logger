@@ -1,6 +1,5 @@
 const DelegatingLogger = require('./DelegatingLogger');
 const Logger = require('./Logger');
-const LoggerFactory = require('./LoggerFactory');
 
 module.exports = class ConfigurableLogger extends DelegatingLogger {
   static DEFAULT_CONFIG_PATH = 'logging.level';
