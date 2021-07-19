@@ -1,12 +1,21 @@
 const DelegatingLogger = require('./DelegatingLogger');
+const Logger = require('./Logger');
+const LoggerFactory = require('./LoggerFactory');
 
 module.exports = class ConfigurableLogger extends DelegatingLogger {
+  static DEFAULT_CONFIG_PATH = 'logging.level';
   constructor(config, provider, category, configPath, registry) {
     super(provider);
     this.config = config;
-    this.category = category;
-    this.configPath = configPath;
+    if (!this.config){
+      throw new Error ('config is required');
+    }
+    this.category = category || Logger.DEFAULT_CATEGORY;
+    this.configPath = configPath || ConfigurableLogger.DEFAULT_CONFIG_PATH;
     this.registry = registry;
+    if (!this.registry) {
+      throw new Error ('registry is required');
+    }
     this.provider.setLevel(
       ConfigurableLogger.getLoggerLevel(
         this.category,
@@ -36,7 +45,7 @@ module.exports = class ConfigurableLogger extends DelegatingLogger {
 
   static getLoggerLevel(category, configPath, config, registry) {
     let level = 'info';
-    const path = configPath || 'logging.level';
+    const path = configPath || ConfigurableLogger.DEFAULT_CONFIG_PATH;
     const categories = (category || '').split('/');
     let pathStep = path;
 

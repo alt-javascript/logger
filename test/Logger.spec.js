@@ -32,9 +32,9 @@ beforeEach(async () => {
 
 describe('Logger Specification', () => {
   it('Instantiate - constructor args are set', () => {
-    const logger = new Logger('ROOT',LoggerLevel.DEBUG,LoggerLevel.ENUMS);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS);
 
-    assert.equal(logger.category, 'ROOT', 'logger.category === \'ROOT\'');
+    assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.levels, LoggerLevel.ENUMS, 'logger.levels === LoggerLevel.ENUMS');
     assert.equal(logger.level, LoggerLevel.ENUMS[LoggerLevel.DEBUG], 'logger.level === LoggerLevels.ENUMS[LoggerLevel.DEBUG]');
   });
@@ -42,7 +42,7 @@ describe('Logger Specification', () => {
   it('Instantiate - default constructor args are set', () => {
     const logger = new Logger();
 
-    assert.equal(logger.category, 'ROOT', 'logger.category === \'ROOT\'');
+    assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.levels, LoggerLevel.ENUMS, 'logger.levels === LoggerLevel.ENUMS');
     assert.equal(logger.level, LoggerLevel.ENUMS[LoggerLevel.INFO], 'logger.level === LoggerLevels.ENUMS[LoggerLevel.INFO]');
   });
@@ -54,7 +54,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - debug', () => {
-    const logger = new Logger('ROOT',LoggerLevel.DEBUG);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG);
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -71,7 +71,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - verbose', () => {
-    const logger = new Logger('ROOT',LoggerLevel.VERBOSE);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.VERBOSE);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -88,7 +88,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - info', () => {
-    const logger = new Logger('ROOT',LoggerLevel.INFO);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.INFO);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -105,7 +105,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - warn', () => {
-    const logger = new Logger('ROOT',LoggerLevel.WARN);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.WARN);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -122,7 +122,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - error', () => {
-    const logger = new Logger('ROOT',LoggerLevel.ERROR);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.ERROR);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -139,7 +139,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - fatal', () => {
-    const logger = new Logger('ROOT',LoggerLevel.FATAL);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.FATAL);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');

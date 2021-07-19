@@ -37,6 +37,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@alt-javascript/config": "^1.0.2",
     "babel-eslint": "^10.1.0",
     "chai": "^4.3.4",
     "config": "^3.3.6",
