@@ -21,7 +21,7 @@ requires path is a sensible choice).
 ```javascript
 const {config} = require('config');
 const {LoggerFactory} = require('@alt-javascript/logger');
-const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule');
+const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule',config);
 
 logger.info('Hello world!');
 ```
@@ -33,6 +33,7 @@ following in your [config](https://www.npmjs.com/package/config) files.
 ```json
 {
   "logging" : {
+     "format" : 'json',
      "level" : {
        "/" : "info",
        "@myorg/mypackage/MyModule" : "debug"
@@ -67,50 +68,50 @@ if (logger.isDebugEnabled()){
 <a name="conf">Configuring</a>
 ------------------------------
 
-While the LoggerFactory uses sensible defaults, it is flexible and pluggable.  To use the popular 
-[winston](https://www.npmjs.com/package/winston) package you can pass a `WinstonLogger` provider to the `getLogger`
-function, passing it your winston options (nullish options will fall back to defaults).
-
->Be aware the WinstonLogger is not exported by default, and [winston](https://www.npmjs.com/package/winston) is not 
-> included as a package dependency for [@alt-javascript/logger](https://www.npmjs.com/package/@alt-javascript/logger) 
-> to keep it light-weight.
-    
+While the module uses sensible defaults, it is flexible and pluggable.  To use the popular 
+[winston](https://www.npmjs.com/package/winston) package you can use a `WinstonLoggerFactory`, passing it your 
+winston and winston options (nullish options will fall back to defaults).
 
 ```javascript
 const {config} = require('config');
-const {LoggerFactory,WinstonLogger} = require('@alt-javascript/logger');
-const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule', new WinstonLogger({/*mywinstonoptions*/}));
+const {winston} = require('winston');
+const {WinstonLoggerFactory} = require('@alt-javascript/logger');
+const logger = WinstonLoggerFactory.getLogger('@myorg/mypackage/MyModule', config, winston,  {/*mywinstonoptions*/}));
 
 logger.info('Hello world!');
 ```
 
 The `ConsoleLogger` uses a JSONFormatter, but a PlainTextFormatter (or similar implementation) can easily be
-substituted.
+substituted in the config by setting the 'logging.format' config value to 'text'
 
-```javascript
-const {config} = require('config');
-const {LoggerFactory,ConsoleLogger} = require('@alt-javascript/logger');
-const logger = LoggerFactory.getLogger(config,'@myorg/mypackage/MyModule', new ConsoleLogger('@myorg/mypackage/MyModule',new PlainTextFromatter()));
-
-logger.info('Hello world!');
+```json
+{
+  "logging" : {
+     "format" : 'text',
+     "level" : {
+       "/" : "info",
+       "@myorg/mypackage/MyModule" : "debug"
+     }
+  }
+}
 ```
 
 <a name="testing">Testability</a>
 -------------------------
 
-Testing loggers is hard, and testability is a first class concern at @alt-javascript so the module exports an EphemeralLogger and EphemeralLogSink that will capture log lines that can be asserted.
+Testing loggers is hard, and testability is a first class concern at @alt-javascript so the module exports a 
+'CachingLoggerFactory' that will provide a logger implementation that will capture log lines that can be asserted.
 
 ```javascript
 const {config} = require('config');
-const {LoggerFactory, EphemeralLogger} = require('@alt-javascript/logger');
-const ephemeralLogger = new EphemeralLogger('@myorg/mypackage/MyModule');
-const logger = LoggerFactory.getLogger(config, '@myorg/mypackage/MyModule', ephemeralLogger);
+const {CachingLoggerFactory} = require('@alt-javascript/logger');
+const logger = CachingLoggerFactory.getLogger('@myorg/mypackage/MyModule', config);
 
 logger.info('Hello world!');
 
 //...
 
-assert.isTrue(ephemeralLogger.sink.cache[0].contains('Hello world!'))
+assert.isTrue(logger.provider.console.cache[0].contains('Hello world!'))
 ```
 <a name="resources">Resources</a>
 ---------------------------------

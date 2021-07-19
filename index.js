@@ -1,11 +1,14 @@
 module.exports.ConfigurableLogger = require('./ConfigurableLogger');
 module.exports.ConsoleLogger = require('./ConsoleLogger');
 module.exports.DelegatingLogger = require('./DelegatingLogger');
-module.exports.EphemeralLogger = require('./EphemeralLogger');
-module.exports.EphemeralLogSink = require('./CachingConsole');
+module.exports.CachingConsole = require('./CachingConsole');
+module.exports.CachingLoggerFactory = require('./CachingLoggerFactory');
 module.exports.JSONFormatter = require('./JSONFormatter');
 module.exports.Logger = require('./Logger');
 module.exports.LoggerFactory = require('./LoggerFactory');
 module.exports.LoggerLevel = require('./LoggerLevel');
 module.exports.LoggerRegistry = require('./LoggerRegistry');
+module.exports.MultiLogger = require('./MultiLogger');
 module.exports.PlainTextFormatter = require('./PlainTextFormatter');
+module.exports.WinstonLogger = require('./WinstonLogger');
+module.exports.WinstonLoggerFactory = require('./WinstonLoggerFactory');
