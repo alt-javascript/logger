@@ -1,3 +1,9 @@
+1.1.0 / 2021-07-19
+==================
+
+* Breaking interface change on LogFactory, minor version+ - @craigparra
+* Wide Refactoring for fluency, many (100+) tests - @craigparra
+  
 1.0.11 / 2021-07-15
 ==================
 
