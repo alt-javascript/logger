@@ -3,9 +3,13 @@ const Logger = require('./Logger');
 const LoggerLevel = require('./LoggerLevel');
 
 module.exports = class WinstonLogger extends Logger {
-  constructor(category, winston, options, level, meta, levels) {
+  //category, level, levels, meta, formatter, consoleArg
+  constructor(category, level, levels, meta, winston, options) {
     super(category, level, levels);
-    this.winston = winston,
+    this.winston = winston;
+    if (!this.winston){
+      throw new Error ('winston is required');
+    }
     this.meta = meta || {};
     this.options = options || {
       level: level || 'info',
