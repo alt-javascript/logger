@@ -15,6 +15,8 @@ package interface.
 <a name="usage">Usage</a>
 -------------------------
 
+### Standalone
+
 To use the module, import the LoggerFactory and call the `getLogger` function with a logging category (your module 
 requires path is a sensible choice).
 
@@ -41,6 +43,34 @@ following in your [config](https://www.npmjs.com/package/config) files.
   }
 }
 ```
+
+### @alt-javascript/boot
+
+The LoggerSyntax is more fluent if you combine  
+[@alt-javascript/boot](https://www.npmjs.com/package/@alt-javascript/boot) and 
+[@alt-javascript/config](https://www.npmjs.com/package/@alt-javascript/config) to bind the LoggerFactory 
+to the global root context, freeing your sub-modules from requiring and injecting the config.  
+
+`MyModule.js`
+```javascript
+const config = require('@alt-javascript/config');
+const {LoggerFactory} = require('@alt-javascript/logger');
+const {boot} = require('@alt-javascript/boot');
+boot(config);
+
+```
+
+Then in your application modules, you only need.
+
+`MyModule.js`
+```javascript
+const {LoggerFactory} = require('@alt-javascript/logger');
+
+const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule');
+logger.info('Hello from MyModule!')
+```
+
+### Log Levels
 
 The logger supports the following levels by default, but is fully configurable.
 
