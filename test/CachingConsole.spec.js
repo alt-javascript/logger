@@ -30,6 +30,7 @@ beforeEach(async () => {
 });
 
 describe('CachingConsole Specification', () => {
+
   it('Instantiate - constructor args are set', () => {
     const cachingConsole = new CachingConsole(1,false);
 

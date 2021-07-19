@@ -13,12 +13,20 @@ module.exports = class LoggerFactory {
     }
 
     static detectConfig(configArg){
-        let outerConfig = null;
+        let _config = null;
         if (!(typeof config == 'undefined')){
-            outerConfig = config;
+            _config = config;
         }
-        let _config = configArg || outerConfig;
-
+        if (global?.boot?.contexts?.root?.config){
+            _config = global.boot.contexts.root.config;
+        }
+        if (LoggerFactory.detectBrowser() && window?.config){
+            _config = window.config;
+        }
+        if (LoggerFactory.detectBrowser() && window?.boot?.contexts?.root?.config){
+            _config = window.boot.contexts.root.config;
+        }
+        _config = configArg || _config;
         if (_config){
             return _config;
         }
@@ -29,17 +37,18 @@ module.exports = class LoggerFactory {
 
     static detectLoggerFactory(){
         let _loggerFactory = null;
-        let outerLoggerFactory = null;
+        if (!(typeof loggerFactory == 'undefined')){
+            _loggerFactory = loggerFactory;
+        }
         if (global?.boot?.contexts?.root?.loggerFactory){
             _loggerFactory = global.boot.contexts.root.loggerFactory;
+        }
+        if (LoggerFactory.detectBrowser() && window?.loggerFactory){
+            _loggerFactory = window.loggerFactory;
         }
         if (LoggerFactory.detectBrowser() && window?.boot?.contexts?.root?.loggerFactory){
             _loggerFactory = window.boot.contexts.root.loggerFactory;
         }
-        if (!(typeof loggerFactory == 'undefined')){
-            outerLoggerFactory = loggerFactory;
-        }
-        _loggerFactory = outerLoggerFactory;
         return _loggerFactory;
     }
 
@@ -76,7 +85,13 @@ module.exports = class LoggerFactory {
     constructor(config, registry, configPath) {
         this.config = config;
         this.registry = registry;
-        this.configPath = configPath;
+        this.configPath = configPath || ConfigurableLogger.DEFAULT_CONFIG_PATH;
+        if (!this.config){
+            throw new Error ('config is required');
+        }
+        if (!this.registry) {
+            throw new Error ('registry is required');
+        }
     }
 
     getLogger(category) {

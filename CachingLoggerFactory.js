@@ -21,14 +21,14 @@ module.exports = class CachingLoggerFactory extends LoggerFactory {
 
     constructor(config, registry, configPath) {
         super (config, registry, configPath)
-        CachingLoggerFactory.prototype.getFormatter() = LoggerFactory.prototype.getFormatter();
+        CachingLoggerFactory.prototype.getFormatter = LoggerFactory.prototype.getFormatter;
     }
 
     getLogger(category) {
         return new ConfigurableLogger(this.config,
             new ConsoleLogger(category,
                 null,null,null,
-                this.getFormatter(_configArg),
+                this.getFormatter(this.config),
                 new CachingConsole()),
             category,
             this.configPath,
