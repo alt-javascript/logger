@@ -3,6 +3,12 @@
 
 * Updated README.md for boot - @craigparra
   
+1.1.3 / 2021-07-20
+==================
+
+* Fix Registry cache get  - @craigparra
+
+
 1.1.1 / 2021-07-19
 ==================
 
