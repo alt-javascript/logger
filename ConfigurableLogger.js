@@ -59,7 +59,7 @@ module.exports = class ConfigurableLogger extends DelegatingLogger {
     for (let i = 0; i < categories.length; i++) {
       pathStep = `${pathStep}${i === 0 ? '.' : '/'}${categories[i]}`;
       if (registry.get(pathStep)) {
-        level = registry[pathStep];
+        level = registry.get(pathStep);
       } else if (config.has(pathStep)) {
         level = config.get(pathStep);
         registry.add(pathStep, level);
