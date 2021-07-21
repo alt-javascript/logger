@@ -37,24 +37,24 @@ describe('CachingLoggerFactory Specification', () => {
 
   it('Instantiate - constructor args are set', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerCategoryCache();
-    const cachingLoggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
+    const cache = new LoggerCategoryCache();
+    const cachingLoggerFactory = new CachingLoggerFactory(config,cache,ConfigurableLogger.DEFAULT_CONFIG_PATH);
 
     assert.equal(cachingLoggerFactory.config, config, 'cachingLoggerFactory.config === config');
-    assert.equal(cachingLoggerFactory.cache, registry, 'cachingLoggerFactory.registry === registry');
+    assert.equal(cachingLoggerFactory.cache, cache, 'cachingLoggerFactory.cache === cache');
     assert.equal(cachingLoggerFactory.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'cachingLoggerFactory.configPath === configPath');
   });
 
   it('static getLogger', () => {
 
     const config = new EphemeralConfig({});
-    const registry = new LoggerCategoryCache();
-    const logger = CachingLoggerFactory.getLogger(Logger.DEFAULT_CATEGORY,config,ConfigurableLogger.DEFAULT_CONFIG_PATH,registry);
+    const cache = new LoggerCategoryCache();
+    const logger = CachingLoggerFactory.getLogger(Logger.DEFAULT_CATEGORY,config,ConfigurableLogger.DEFAULT_CONFIG_PATH,cache);
 
     assert.equal(logger.config, config, 'logger.config === config');
     assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'logger.configPath === ConfigurableLogger.DEFAULT_CONFIG_PATH');
-    assert.equal(logger.cache, registry, 'logger.registry === registry');
+    assert.equal(logger.cache, cache, 'logger.cache === cache');
   });
 
   it('static getLogger Unable to detect config,', () => {
