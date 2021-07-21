@@ -40,7 +40,7 @@ describe('LoggerCategoryCache Specification', () => {
 
   it('add', () => {
     const loggerCategoryCache = new LoggerCategoryCache();
-    loggerCategoryCache.add('ROOT', LoggerLevel.DEBUG);
+    loggerCategoryCache.put('ROOT', LoggerLevel.DEBUG);
     assert.equal(loggerCategoryCache.get('ROOT'), LoggerLevel.DEBUG, 'loggerCategoryCache.get(\'ROOT\') === LoggerLevel.DEBUG');
   });
 

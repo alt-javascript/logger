@@ -65,7 +65,7 @@ module.exports = class LoggerFactory {
         return formatter
     }
 
-    static getLogger(category, configArg, configPath, registry) {
+    static getLogger(category, configArg, configPath, cache) {
         let loggerFactory = this.detectLoggerFactory();
         if (loggerFactory){
             return loggerFactory.getLogger(category);
@@ -79,18 +79,18 @@ module.exports = class LoggerFactory {
               null),
             _category,
           configPath,
-          registry || LoggerFactory.loggerCategoryCache);
+          cache || LoggerFactory.loggerCategoryCache);
     }
 
-    constructor(config, registry, configPath) {
+    constructor(config, cache, configPath) {
         this.config = config;
-        this.registry = registry;
+        this.cache = cache;
         this.configPath = configPath || ConfigurableLogger.DEFAULT_CONFIG_PATH;
         if (!this.config){
             throw new Error ('config is required');
         }
-        if (!this.registry) {
-            throw new Error ('registry is required');
+        if (!this.cache) {
+            throw new Error ('cache is required');
         }
     }
 
@@ -102,7 +102,7 @@ module.exports = class LoggerFactory {
                 null),
             category,
             this.configPath,
-            this.registry);
+            this.cache);
     }
 
     getFormatter(){

@@ -41,7 +41,7 @@ describe('CachingLoggerFactory Specification', () => {
     const cachingLoggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
 
     assert.equal(cachingLoggerFactory.config, config, 'cachingLoggerFactory.config === config');
-    assert.equal(cachingLoggerFactory.registry, registry, 'cachingLoggerFactory.registry === registry');
+    assert.equal(cachingLoggerFactory.cache, registry, 'cachingLoggerFactory.registry === registry');
     assert.equal(cachingLoggerFactory.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'cachingLoggerFactory.configPath === configPath');
   });
 
@@ -54,7 +54,7 @@ describe('CachingLoggerFactory Specification', () => {
     assert.equal(logger.config, config, 'logger.config === config');
     assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'logger.configPath === ConfigurableLogger.DEFAULT_CONFIG_PATH');
-    assert.equal(logger.registry, registry, 'logger.registry === registry');
+    assert.equal(logger.cache, registry, 'logger.registry === registry');
   });
 
   it('static getLogger Unable to detect config,', () => {

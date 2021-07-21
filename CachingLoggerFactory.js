@@ -6,7 +6,7 @@ const LoggerFactory = require('./LoggerFactory');
 
 module.exports = class CachingLoggerFactory extends LoggerFactory {
 
-    static getLogger(category, configArg, configPath, registry) {
+    static getLogger(category, configArg, configPath, cache) {
         let _configArg = (typeof category == 'object' ? category : configArg);
         let _category = (typeof category == 'object' ? '' : category);
         return new ConfigurableLogger(LoggerFactory.detectConfig(_configArg),
@@ -16,11 +16,11 @@ module.exports = class CachingLoggerFactory extends LoggerFactory {
                 new CachingConsole()),
             category,
             configPath,
-            registry || LoggerFactory.loggerCategoryCache);
+            cache || LoggerFactory.loggerCategoryCache);
     }
 
-    constructor(config, registry, configPath) {
-        super (config, registry, configPath)
+    constructor(config, cache, configPath) {
+        super (config, cache, configPath)
         CachingLoggerFactory.prototype.getFormatter = LoggerFactory.prototype.getFormatter;
     }
 
@@ -32,6 +32,6 @@ module.exports = class CachingLoggerFactory extends LoggerFactory {
                 new CachingConsole()),
             category,
             this.configPath,
-            this.registry);
+            this.cache);
     }
 };

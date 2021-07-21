@@ -4,20 +4,20 @@ const WinstonLogger = require('./WinstonLogger');
 
 module.exports = class WinstonLoggerFactory {
 
-    static getLogger(category, config, winston, options, configPath, registry) {
+    static getLogger(category, config, winston, options, configPath, cache) {
         //constructor(category, level, levels, meta, winston, options)
         return new ConfigurableLogger(config,
            new WinstonLogger(category,null,null,null,winston,options),
           category,
           configPath,
-          registry || LoggerFactory.loggerCategoryCache);
+          cache || LoggerFactory.loggerCategoryCache);
     }
 
-    constructor(config,winston,options,registry, configPath) {
+    constructor(config,winston,options,cache, configPath) {
         this.config = config;
         this.winston = winston;
         this.options = options;
-        this.registry = registry;
+        this.cache = cache;
         this.configPath = configPath;
     }
 
@@ -26,7 +26,7 @@ module.exports = class WinstonLoggerFactory {
             new WinstonLogger(category,null,null,null,this.winston,this.options),
             category,
             this.configPath,
-            this.registry
+            this.cache
         );
     }
 };

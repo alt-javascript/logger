@@ -1,7 +1,13 @@
+1.1.5 / 2021-07-22
+==================
+
+* Refactor categoryCache add -> put to be more resty/mapish - @craigparra
+* Refactor registry args  -> cache - @craigparra
+  
 1.1.4 / 2021-07-22
 ==================
 
-* Refactor reistry to categoryCache - @craigparra
+* Refactor registry to categoryCache - @craigparra
   
 1.1.3 / 2021-07-20
 ==================

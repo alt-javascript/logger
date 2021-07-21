@@ -3,7 +3,7 @@ const Logger = require('./Logger');
 
 module.exports = class ConfigurableLogger extends DelegatingLogger {
   static DEFAULT_CONFIG_PATH = 'logging.level';
-  constructor(config, provider, category, configPath, registry) {
+  constructor(config, provider, category, configPath, cache) {
     super(provider);
     this.config = config;
     if (!this.config){
@@ -11,16 +11,16 @@ module.exports = class ConfigurableLogger extends DelegatingLogger {
     }
     this.category = category || Logger.DEFAULT_CATEGORY;
     this.configPath = configPath || ConfigurableLogger.DEFAULT_CONFIG_PATH;
-    this.registry = registry;
-    if (!this.registry) {
-      throw new Error ('registry is required');
+    this.cache = cache;
+    if (!this.cache) {
+      throw new Error ('cache is required');
     }
     this.provider.setLevel(
       ConfigurableLogger.getLoggerLevel(
         this.category,
         this.configPath,
         this.config,
-        this.registry,
+        this.cache,
       ),
     );
 
@@ -42,27 +42,27 @@ module.exports = class ConfigurableLogger extends DelegatingLogger {
     ConfigurableLogger.prototype.isFatalEnabled = DelegatingLogger.prototype.isFatalEnabled;
   }
 
-  static getLoggerLevel(category, configPath, config, registry) {
+  static getLoggerLevel(category, configPath, config, cache) {
     let level = 'info';
     const path = configPath || ConfigurableLogger.DEFAULT_CONFIG_PATH;
     const categories = (category || '').split('/');
     let pathStep = path;
 
     const root = `${pathStep}./`;
-    if (registry.get(root)) {
-      level = registry.get(root);
+    if (cache.get(root)) {
+      level = cache.get(root);
     } else if (config.has(root)) {
       level = config.get(root);
-      registry.add(root, level);
+      cache.put(root, level);
     }
 
     for (let i = 0; i < categories.length; i++) {
       pathStep = `${pathStep}${i === 0 ? '.' : '/'}${categories[i]}`;
-      if (registry.get(pathStep)) {
-        level = registry.get(pathStep);
+      if (cache.get(pathStep)) {
+        level = cache.get(pathStep);
       } else if (config.has(pathStep)) {
         level = config.get(pathStep);
-        registry.add(pathStep, level);
+        cache.put(pathStep, level);
       }
     }
     return level;

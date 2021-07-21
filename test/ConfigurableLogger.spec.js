@@ -40,28 +40,28 @@ describe('ConfigurableLogger Specification', () => {
   it('Instantiate - constructor args are set', () => {
     const config = new EphemeralConfig({});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(), new CachingConsole(10,true));
-    const registry = new LoggerCategoryCache();
-    const logger = new ConfigurableLogger(config,consoleLogger,Logger.DEFAULT_CATEGORY,ConfigurableLogger.DEFAULT_CONFIG_PATH,registry);
+    const cache = new LoggerCategoryCache();
+    const logger = new ConfigurableLogger(config,consoleLogger,Logger.DEFAULT_CATEGORY,ConfigurableLogger.DEFAULT_CONFIG_PATH,cache);
 
-//  constructor(config, provider, category, configPath, registry) {
+//  constructor(config, provider, category, configPath, cache) {
     assert.equal(logger.config, config, 'logger.config === config');
     assert.equal(logger.provider, consoleLogger, 'logger.provider === consoleLogger');
     assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'logger.configPath === ConfigurableLogger.DEFAUL_CONFIG_PATH');
-    assert.equal(logger.registry, registry, 'logger.registry === registry');
+    assert.equal(logger.cache, cache, 'logger.cache === cache');
   });
 
   it('Instantiate - default constructor args are set', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerCategoryCache();
+    const cache = new LoggerCategoryCache();
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(), new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,registry);
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,cache);
 
     assert.equal(logger.config, config, 'logger.config === config');
     assert.equal(logger.provider, consoleLogger, 'logger.provider === consoleLogger');
     assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'logger.configPath === ConfigurableLogger.DEFAUL_CONFIG_PATH');
-    assert.equal(logger.registry, registry, 'logger.registry === registry');
+    assert.equal(logger.cache, cache, 'logger.cache === cache');
   });
 
   it('Instantiate - config is required', () => {
@@ -79,7 +79,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Instantiate - provider is required', () => {
     const config = new EphemeralConfig({});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(), new CachingConsole(10,true));
-    assert.throws(()=>{new ConfigurableLogger(config,consoleLogger,null,null)},'registry is required');
+    assert.throws(()=>{new ConfigurableLogger(config,consoleLogger,null,null)},'cache is required');
   });
 
 
@@ -89,7 +89,7 @@ describe('ConfigurableLogger Specification', () => {
     logger.setLevel(LoggerLevel.DEBUG);
     assert.equal(logger.provider.level, LoggerLevel.ENUMS[LoggerLevel.DEBUG], 'logger.level === LoggerLevels.ENUMS[LoggerLevel.DEBUG]');
   });
-  
+
 
   it('Check levels - debug', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.DEBUG}}});

@@ -7,7 +7,7 @@ module.exports = class LoggerCategoryCache {
     return this.cache[category];
   }
 
-  add(category, level) {
+  put(category, level) {
     this.cache[category] = level;
   }
 };
