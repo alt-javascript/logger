@@ -4,7 +4,7 @@ const CachingLoggerFactory = require('../CachingLoggerFactory');
 const ConfigurableLogger = require('../ConfigurableLogger');
 const Logger = require('../Logger');
 const LoggerFactory = require('../LoggerFactory');
-const LoggerRegistry = require('../LoggerRegistry');
+const LoggerCategoryCache = require('../LoggerCategoryCache');
 
 const nodeconfig = require('config');
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingLoggerFactory_spec',nodeconfig);
@@ -37,7 +37,7 @@ describe('CachingLoggerFactory Specification', () => {
 
   it('Instantiate - constructor args are set', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const cachingLoggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
 
     assert.equal(cachingLoggerFactory.config, config, 'cachingLoggerFactory.config === config');
@@ -48,7 +48,7 @@ describe('CachingLoggerFactory Specification', () => {
   it('static getLogger', () => {
 
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const logger = CachingLoggerFactory.getLogger(Logger.DEFAULT_CATEGORY,config,ConfigurableLogger.DEFAULT_CONFIG_PATH,registry);
 
     assert.equal(logger.config, config, 'logger.config === config');

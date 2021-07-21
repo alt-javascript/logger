@@ -10,7 +10,7 @@ module.exports = class WinstonLoggerFactory {
            new WinstonLogger(category,null,null,null,winston,options),
           category,
           configPath,
-          registry || LoggerFactory.loggerRegistry);
+          registry || LoggerFactory.loggerCategoryCache);
     }
 
     constructor(config,winston,options,registry, configPath) {

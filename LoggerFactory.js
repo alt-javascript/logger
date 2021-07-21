@@ -1,11 +1,11 @@
 const ConfigurableLogger = require('./ConfigurableLogger');
 const ConsoleLogger = require('./ConsoleLogger');
-const LoggerRegistry = require('./LoggerRegistry');
+const LoggerCategoryCache = require('./LoggerCategoryCache');
 const JSONFormatter = require('./JSONFormatter');
 const PlainTextFormatter = require('./PlainTextFormatter');
 
 module.exports = class LoggerFactory {
-    static loggerRegistry = new LoggerRegistry();
+    static loggerCategoryCache = new LoggerCategoryCache();
 
      static detectBrowser(){
         let browser = !(typeof window == 'undefined');
@@ -79,7 +79,7 @@ module.exports = class LoggerFactory {
               null),
             _category,
           configPath,
-          registry || LoggerFactory.loggerRegistry);
+          registry || LoggerFactory.loggerCategoryCache);
     }
 
     constructor(config, registry, configPath) {

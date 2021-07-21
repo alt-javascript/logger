@@ -2,7 +2,7 @@ const { assert } = require('chai');
 
 const LoggerLevel = require('../LoggerLevel');
 const LoggerFactory = require('../LoggerFactory');
-const LoggerRegistry = require('../LoggerRegistry');
+const LoggerCategoryCache = require('../LoggerCategoryCache');
 
 const config = require('config');
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingConsole_spec',config);
@@ -31,17 +31,17 @@ beforeEach(async () => {
   loggr.debug('each setup completed');
 });
 
-describe('LoggerRegistry Specification', () => {
+describe('LoggerCategoryCache Specification', () => {
   it('Instantiate - constructor args are set', () => {
-    const loggerRegistry = new LoggerRegistry();
+    const loggerCategoryCache = new LoggerCategoryCache();
 
-    assert.isObject(loggerRegistry.cache, 1, 'loggerRegistry.cache is object');
+    assert.isObject(loggerCategoryCache.cache, 1, 'loggerCategoryCache.cache is object');
   });
 
   it('add', () => {
-    const loggerRegistry = new LoggerRegistry();
-    loggerRegistry.add('ROOT', LoggerLevel.DEBUG);
-    assert.equal(loggerRegistry.get('ROOT'), LoggerLevel.DEBUG, 'loggerRegistry.get(\'ROOT\') === LoggerLevel.DEBUG');
+    const loggerCategoryCache = new LoggerCategoryCache();
+    loggerCategoryCache.add('ROOT', LoggerLevel.DEBUG);
+    assert.equal(loggerCategoryCache.get('ROOT'), LoggerLevel.DEBUG, 'loggerCategoryCache.get(\'ROOT\') === LoggerLevel.DEBUG');
   });
 
 });

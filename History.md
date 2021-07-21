@@ -1,13 +1,17 @@
-1.1.2 / 2021-07-19
+1.1.4 / 2021-07-22
 ==================
 
-* Updated README.md for boot - @craigparra
+* Refactor reistry to categoryCache - @craigparra
   
 1.1.3 / 2021-07-20
 ==================
 
 * Fix Registry cache get  - @craigparra
 
+1.1.2 / 2021-07-19
+==================
+
+* Updated README.md for boot - @craigparra
 
 1.1.1 / 2021-07-19
 ==================

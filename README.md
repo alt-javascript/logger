@@ -21,7 +21,7 @@ To use the module, import the LoggerFactory and call the `getLogger` function wi
 requires path is a sensible choice).
 
 ```javascript
-const {config} = require('config');
+const config = require('config');
 const {LoggerFactory} = require('@alt-javascript/logger');
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule',config);
 
@@ -53,10 +53,10 @@ to the global root context, freeing your sub-modules from requiring and injectin
 
 `MyModule.js`
 ```javascript
-const config = require('@alt-javascript/config');
+const {config} = require('@alt-javascript/config');
 const {LoggerFactory} = require('@alt-javascript/logger');
 const {boot} = require('@alt-javascript/boot');
-boot(config);
+boot({config:config});
 
 ```
 
@@ -103,7 +103,7 @@ While the module uses sensible defaults, it is flexible and pluggable.  To use t
 winston and winston options (nullish options will fall back to defaults).
 
 ```javascript
-const {config} = require('config');
+const config = require('config');
 const {winston} = require('winston');
 const {WinstonLoggerFactory} = require('@alt-javascript/logger');
 const logger = WinstonLoggerFactory.getLogger('@myorg/mypackage/MyModule', config, winston,  {/*mywinstonoptions*/}));
@@ -133,7 +133,7 @@ Testing loggers is hard, and testability is a first class concern at @alt-javasc
 'CachingLoggerFactory' that will provide a logger implementation that will capture log lines that can be asserted.
 
 ```javascript
-const {config} = require('config');
+const config = require('config');
 const {CachingLoggerFactory} = require('@alt-javascript/logger');
 const logger = CachingLoggerFactory.getLogger('@myorg/mypackage/MyModule', config);
 

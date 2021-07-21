@@ -1,4 +1,4 @@
-module.exports = class LoggerRegistry {
+module.exports = class LoggerCategoryCache {
   constructor() {
     this.cache = {};
   }

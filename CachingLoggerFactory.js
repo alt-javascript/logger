@@ -16,7 +16,7 @@ module.exports = class CachingLoggerFactory extends LoggerFactory {
                 new CachingConsole()),
             category,
             configPath,
-            registry || LoggerFactory.loggerRegistry);
+            registry || LoggerFactory.loggerCategoryCache);
     }
 
     constructor(config, registry, configPath) {

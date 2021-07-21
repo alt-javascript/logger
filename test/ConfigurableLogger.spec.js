@@ -7,7 +7,7 @@ const JSONFormatter = require('../JSONFormatter');
 const Logger = require('../Logger');
 const LoggerLevel = require('../LoggerLevel');
 const LoggerFactory = require('../LoggerFactory');
-const LoggerRegistry = require('../LoggerRegistry');
+const LoggerCategoryCache = require('../LoggerCategoryCache');
 
 const config = require('config');
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/ConfigurableLogger_spec',config);
@@ -40,7 +40,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Instantiate - constructor args are set', () => {
     const config = new EphemeralConfig({});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(), new CachingConsole(10,true));
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const logger = new ConfigurableLogger(config,consoleLogger,Logger.DEFAULT_CATEGORY,ConfigurableLogger.DEFAULT_CONFIG_PATH,registry);
 
 //  constructor(config, provider, category, configPath, registry) {
@@ -53,7 +53,7 @@ describe('ConfigurableLogger Specification', () => {
 
   it('Instantiate - default constructor args are set', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(), new CachingConsole(10,true));
     const logger = new ConfigurableLogger(config,consoleLogger,null,null,registry);
 
@@ -67,13 +67,13 @@ describe('ConfigurableLogger Specification', () => {
   it('Instantiate - config is required', () => {
     const config = new EphemeralConfig({});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(), new CachingConsole(10,true));
-    assert.throws(()=>{new ConfigurableLogger(null,consoleLogger,null,null,new LoggerRegistry())},'config is required');
+    assert.throws(()=>{new ConfigurableLogger(null,consoleLogger,null,null,new LoggerCategoryCache())},'config is required');
   });
 
   it('Instantiate - provider is required', () => {
     const config = new EphemeralConfig({});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(), new CachingConsole(10,true));
-    assert.throws(()=>{new ConfigurableLogger(config,null,null,null,new LoggerRegistry())},'provider is required');
+    assert.throws(()=>{new ConfigurableLogger(config,null,null,null,new LoggerCategoryCache())},'provider is required');
   });
 
   it('Instantiate - provider is required', () => {
@@ -85,7 +85,7 @@ describe('ConfigurableLogger Specification', () => {
 
   it('setLevel', () => {
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     logger.setLevel(LoggerLevel.DEBUG);
     assert.equal(logger.provider.level, LoggerLevel.ENUMS[LoggerLevel.DEBUG], 'logger.level === LoggerLevels.ENUMS[LoggerLevel.DEBUG]');
   });
@@ -94,7 +94,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Check levels - debug', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.DEBUG}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -113,7 +113,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Check levels - verbose', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.VERBOSE}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.VERBOSE,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -132,7 +132,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Check levels - info', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.INFO}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.INFO,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -151,7 +151,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Check levels - warn', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.WARN}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.WARN,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -170,7 +170,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Check levels - error', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.ERROR}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.ERROR,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -189,7 +189,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Check levels - fatal', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.FATAL}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.FATAL,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -208,7 +208,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Log levels - debug', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.DEBUG}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');
@@ -228,7 +228,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Log levels - verbose', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.VERBOSE}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.VERBOSE,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');
@@ -247,7 +247,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Log levels - info', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.INFO}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.INFO,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');
@@ -265,7 +265,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Log levels - warn', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.WARN}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.WARN,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');
@@ -282,7 +282,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Log levels - error', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.ERROR}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.ERROR,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');
@@ -298,7 +298,7 @@ describe('ConfigurableLogger Specification', () => {
   it('Log levels - fatal', () => {
     const config = new EphemeralConfig({logging:{level:{'/':LoggerLevel.FATAL}}});
     const consoleLogger = new ConsoleLogger(Logger.DEFAULT_CATEGORY,LoggerLevel.FATAL,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerRegistry());
+    const logger = new ConfigurableLogger(config,consoleLogger,null,null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');
@@ -318,7 +318,7 @@ describe('ConfigurableLogger Specification', () => {
         'two': LoggerLevel.WARN
       }}});
     let consoleLogger = new ConsoleLogger('one',LoggerLevel.FATAL,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    let logger = new ConfigurableLogger(config,consoleLogger,'one',null,new LoggerRegistry());
+    let logger = new ConfigurableLogger(config,consoleLogger,'one',null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');
@@ -331,7 +331,7 @@ describe('ConfigurableLogger Specification', () => {
     assert.isTrue(logger.provider.console.cache[1].includes('"level":"fatal","message":"message"'),'logger.provider.console.cache[0].includes(\'"level":"fatal","message":"message"\')');
 
     consoleLogger = new ConsoleLogger('two',LoggerLevel.FATAL,LoggerLevel.ENUMS,{},new JSONFormatter(),new CachingConsole(10,true));
-    logger = new ConfigurableLogger(config,consoleLogger,'two',null,new LoggerRegistry());
+    logger = new ConfigurableLogger(config,consoleLogger,'two',null,new LoggerCategoryCache());
     logger.debug('message');
     logger.verbose('message');
     logger.info('message');

@@ -4,7 +4,7 @@ const CachingLoggerFactory = require('../CachingLoggerFactory');
 const ConfigurableLogger = require('../ConfigurableLogger');
 const Logger = require('../Logger');
 const LoggerFactory = require('../LoggerFactory');
-const LoggerRegistry = require('../LoggerRegistry');
+const LoggerCategoryCache = require('../LoggerCategoryCache');
 
 const nodeconfig = require('config');
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/LoggerFactory_spec',nodeconfig);
@@ -36,7 +36,7 @@ beforeEach(async () => {
 describe('LoggerFactory Specification', () => {
   it('Instantiate - constructor args are set', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const loggerFactory = new LoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
 
     assert.equal(loggerFactory.config, config, 'loggerFactory.config === config');
@@ -48,7 +48,7 @@ describe('LoggerFactory Specification', () => {
   it('static getLogger', () => {
 
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const logger = LoggerFactory.getLogger(Logger.DEFAULT_CATEGORY,config,ConfigurableLogger.DEFAULT_CONFIG_PATH,registry);
 
     assert.equal(logger.config, config, 'logger.config === config');
@@ -109,7 +109,7 @@ describe('LoggerFactory Specification', () => {
 
   it('static getLogger global logFactory is detected', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const loggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
     global.loggerFactory = loggerFactory;//{ boot :{contexts : {root:{config:config}}}};
     const logger = LoggerFactory.getLogger();
@@ -121,7 +121,7 @@ describe('LoggerFactory Specification', () => {
 
   it('static getLogger global loggerFactory is detected', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const loggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
     global.loggerFactory = loggerFactory;//{ boot :{contexts : {root:{config:config}}}};
     const logger = LoggerFactory.getLogger();
@@ -133,7 +133,7 @@ describe('LoggerFactory Specification', () => {
 
   it('static getLogger global browser loggerFactory is detected', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const loggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
     global.window = {loggerFactory:loggerFactory}
     const logger = LoggerFactory.getLogger();
@@ -145,7 +145,7 @@ describe('LoggerFactory Specification', () => {
 
   it('static getLogger global boot loggerFactory is detected', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const loggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
     global.boot =  {contexts : {root:{loggerFactory:loggerFactory}}};
     const logger = LoggerFactory.getLogger();
@@ -157,7 +157,7 @@ describe('LoggerFactory Specification', () => {
 
   it('static getLogger browser boot loggerFactory is detected', () => {
     const config = new EphemeralConfig({});
-    const registry = new LoggerRegistry();
+    const registry = new LoggerCategoryCache();
     const loggerFactory = new CachingLoggerFactory(config,registry,ConfigurableLogger.DEFAULT_CONFIG_PATH);
     global.window = { boot :{contexts : {root:{loggerFactory:loggerFactory}}}};
     const logger = LoggerFactory.getLogger();
