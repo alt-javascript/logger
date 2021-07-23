@@ -3,17 +3,18 @@ const Logger = require('./Logger');
 
 module.exports = class ConfigurableLogger extends DelegatingLogger {
   static DEFAULT_CONFIG_PATH = 'logging.level';
+
   constructor(config, provider, category, configPath, cache) {
     super(provider);
     this.config = config;
-    if (!this.config){
-      throw new Error ('config is required');
+    if (!this.config) {
+      throw new Error('config is required');
     }
     this.category = category || Logger.DEFAULT_CATEGORY;
     this.configPath = configPath || ConfigurableLogger.DEFAULT_CONFIG_PATH;
     this.cache = cache;
     if (!this.cache) {
-      throw new Error ('cache is required');
+      throw new Error('cache is required');
     }
     this.provider.setLevel(
       ConfigurableLogger.getLoggerLevel(

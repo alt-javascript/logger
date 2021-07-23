@@ -7,7 +7,7 @@ module.exports = class JSONFormatter {
       _.assignIn({
         level, message, timestamp, category,
       },
-      _.assignIn(meta, this.meta)),
+      meta),
     );
   }
 };

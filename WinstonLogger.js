@@ -3,19 +3,19 @@ const Logger = require('./Logger');
 const LoggerLevel = require('./LoggerLevel');
 
 module.exports = class WinstonLogger extends Logger {
-  //category, level, levels, meta, formatter, consoleArg
+  // category, level, levels, meta, formatter, consoleArg
   constructor(category, level, levels, meta, winston, options) {
     super(category, level, levels);
     this.winston = winston;
-    if (!this.winston){
-      throw new Error ('winston is required');
+    if (!this.winston) {
+      throw new Error('winston is required');
     }
     this.meta = meta || {};
     this.options = options || {
       level: level || 'info',
       format: winston.format.combine(
-          winston.format.timestamp(),
-          winston.format.json(),
+        winston.format.timestamp(),
+        winston.format.json(),
       ),
       defaultMeta: meta || {},
       transports: [

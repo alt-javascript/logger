@@ -2,6 +2,7 @@ const LoggerLevel = require('./LoggerLevel');
 
 module.exports = class Logger {
   static DEFAULT_CATEGORY = 'ROOT'
+
   constructor(category, level, levels) {
     this.category = category || Logger.DEFAULT_CATEGORY;
     this.levels = levels || LoggerLevel.ENUMS;

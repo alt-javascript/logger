@@ -1,10 +1,9 @@
 const { assert } = require('chai');
-const Logger = require('../Logger');
+const config = require('config');
 const LoggerLevel = require('../LoggerLevel');
 const LoggerFactory = require('../LoggerFactory');
 
-const config = require('config');
-const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/Logger_spec',config);
+const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/Logger_spec', config);
 
 before(async () => {
   loggr.debug('spec setup started');

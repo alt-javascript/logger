@@ -1,10 +1,10 @@
 const { assert } = require('chai');
+const config = require('config');
 const Logger = require('../Logger');
 const LoggerLevel = require('../LoggerLevel');
 const LoggerFactory = require('../LoggerFactory');
 
-const config = require('config');
-const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/Logger_spec',config);
+const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/Logger_spec', config);
 
 before(async () => {
   loggr.debug('spec setup started');
@@ -32,7 +32,7 @@ beforeEach(async () => {
 
 describe('Logger Specification', () => {
   it('Instantiate - constructor args are set', () => {
-    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG,LoggerLevel.ENUMS);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY, LoggerLevel.DEBUG, LoggerLevel.ENUMS);
 
     assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.levels, LoggerLevel.ENUMS, 'logger.levels === LoggerLevel.ENUMS');
@@ -54,7 +54,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - debug', () => {
-    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.DEBUG);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY, LoggerLevel.DEBUG);
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -71,7 +71,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - verbose', () => {
-    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.VERBOSE);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY, LoggerLevel.VERBOSE);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is true');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -88,7 +88,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - info', () => {
-    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.INFO);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY, LoggerLevel.INFO);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isTrue(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is true');
@@ -105,7 +105,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - warn', () => {
-    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.WARN);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY, LoggerLevel.WARN);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -122,7 +122,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - error', () => {
-    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.ERROR);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY, LoggerLevel.ERROR);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');
@@ -139,7 +139,7 @@ describe('Logger Specification', () => {
   });
 
   it('Check levels - fatal', () => {
-    const logger = new Logger(Logger.DEFAULT_CATEGORY,LoggerLevel.FATAL);
+    const logger = new Logger(Logger.DEFAULT_CATEGORY, LoggerLevel.FATAL);
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.DEBUG), 'Debug is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.VERBOSE), 'Verbose is false');
     assert.isFalse(logger.isLevelEnabled(LoggerLevel.INFO), 'Info is false');

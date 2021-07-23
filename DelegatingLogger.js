@@ -1,8 +1,8 @@
 module.exports = class DelegatingLogger {
   constructor(provider) {
     this.provider = provider;
-    if (!this.provider){
-      throw new Error ('provider is required');
+    if (!this.provider) {
+      throw new Error('provider is required');
     }
   }
 

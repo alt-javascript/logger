@@ -1,11 +1,11 @@
 const { assert } = require('chai');
 
+const config = require('config');
 const LoggerLevel = require('../LoggerLevel');
 const LoggerFactory = require('../LoggerFactory');
 const LoggerCategoryCache = require('../LoggerCategoryCache');
 
-const config = require('config');
-const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingConsole_spec',config);
+const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingConsole_spec', config);
 
 before(async () => {
   loggr.debug('spec setup started');
@@ -43,5 +43,4 @@ describe('LoggerCategoryCache Specification', () => {
     loggerCategoryCache.put('ROOT', LoggerLevel.DEBUG);
     assert.equal(loggerCategoryCache.get('ROOT'), LoggerLevel.DEBUG, 'loggerCategoryCache.get(\'ROOT\') === LoggerLevel.DEBUG');
   });
-
 });

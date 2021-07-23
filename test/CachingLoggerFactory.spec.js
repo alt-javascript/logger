@@ -1,13 +1,13 @@
 const { assert } = require('chai');
-const {EphemeralConfig} = require ('@alt-javascript/config');
+const { EphemeralConfig } = require('@alt-javascript/config');
+const nodeconfig = require('config');
 const CachingLoggerFactory = require('../CachingLoggerFactory');
 const ConfigurableLogger = require('../ConfigurableLogger');
 const Logger = require('../Logger');
 const LoggerFactory = require('../LoggerFactory');
 const LoggerCategoryCache = require('../LoggerCategoryCache');
 
-const nodeconfig = require('config');
-const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingLoggerFactory_spec',nodeconfig);
+const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingLoggerFactory_spec', nodeconfig);
 
 before(async () => {
   loggr.debug('spec setup started');
@@ -34,22 +34,25 @@ beforeEach(async () => {
 });
 
 describe('CachingLoggerFactory Specification', () => {
-
   it('Instantiate - constructor args are set', () => {
     const config = new EphemeralConfig({});
     const cache = new LoggerCategoryCache();
-    const cachingLoggerFactory = new CachingLoggerFactory(config,cache,ConfigurableLogger.DEFAULT_CONFIG_PATH);
+    const cachingLoggerFactory = new CachingLoggerFactory(
+      config, cache, ConfigurableLogger.DEFAULT_CONFIG_PATH,
+    );
 
     assert.equal(cachingLoggerFactory.config, config, 'cachingLoggerFactory.config === config');
     assert.equal(cachingLoggerFactory.cache, cache, 'cachingLoggerFactory.cache === cache');
-    assert.equal(cachingLoggerFactory.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'cachingLoggerFactory.configPath === configPath');
+    assert.equal(cachingLoggerFactory.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH,
+      'cachingLoggerFactory.configPath === configPath');
   });
 
   it('static getLogger', () => {
-
     const config = new EphemeralConfig({});
     const cache = new LoggerCategoryCache();
-    const logger = CachingLoggerFactory.getLogger(Logger.DEFAULT_CATEGORY,config,ConfigurableLogger.DEFAULT_CONFIG_PATH,cache);
+    const logger = CachingLoggerFactory.getLogger(Logger.DEFAULT_CATEGORY,
+      config, ConfigurableLogger.DEFAULT_CONFIG_PATH,
+      cache);
 
     assert.equal(logger.config, config, 'logger.config === config');
     assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
@@ -58,9 +61,7 @@ describe('CachingLoggerFactory Specification', () => {
   });
 
   it('static getLogger Unable to detect config,', () => {
-
-    const config = new EphemeralConfig({});
-    assert.throws(()=>{CachingLoggerFactory.getLogger()},'Unable to detect config, is \'config\' declared or provided?');
+    assert.throws(() => { CachingLoggerFactory.getLogger(); }, 'Unable to detect config, is \'config\' declared or provided?');
   });
 
   it('static getLogger global config is detected,', () => {
@@ -76,7 +77,7 @@ describe('CachingLoggerFactory Specification', () => {
 
   it('static getLogger global browser config is detected,', () => {
     const config = new EphemeralConfig({});
-    global.window = {config: config};
+    global.window = { config };
     const logger = CachingLoggerFactory.getLogger();
 
     assert.equal(logger.config, config, 'logger.config === config');
@@ -87,7 +88,7 @@ describe('CachingLoggerFactory Specification', () => {
 
   it('static getLogger global boot config is detected', () => {
     const config = new EphemeralConfig({});
-    global.boot = { contexts : {root:{config:config}}};
+    global.boot = { contexts: { root: { config } } };
     const logger = CachingLoggerFactory.getLogger();
 
     assert.equal(logger.config, config, 'logger.config === config');
@@ -98,7 +99,7 @@ describe('CachingLoggerFactory Specification', () => {
 
   it('static getLogger browser boot config is detected', () => {
     const config = new EphemeralConfig({});
-    global.window = { boot :{contexts : {root:{config:config}}}};
+    global.window = { boot: { contexts: { root: { config } } } };
     const logger = CachingLoggerFactory.getLogger();
 
     assert.equal(logger.config, config, 'logger.config === config');
@@ -106,5 +107,4 @@ describe('CachingLoggerFactory Specification', () => {
     assert.equal(logger.configPath, ConfigurableLogger.DEFAULT_CONFIG_PATH, 'logger.configPath === ConfigurableLogger.DEFAULT_CONFIG_PATH');
     global.window = undefined;
   });
-
 });
