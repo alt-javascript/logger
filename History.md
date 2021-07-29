@@ -1,3 +1,8 @@
+1.1.6 / 2021-07-30
+==================
+
+* README.md remove resources section - @craigparra 
+  
 1.1.5 / 2021-07-22
 ==================
 

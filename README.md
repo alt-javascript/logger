@@ -143,13 +143,6 @@ logger.info('Hello world!');
 
 assert.isTrue(logger.provider.console.cache[0].contains('Hello world!'))
 ```
-<a name="resources">Resources</a>
----------------------------------
-
-<https://github.com/craigparra/alt-javascript>  has a 
-useful [Design Trail](https://github.com/craigparra/alt-javascript/blob/master/LOGGING.md) available for this
-module.
-
 
 <a name="license">License</a>
 -----------------------------
