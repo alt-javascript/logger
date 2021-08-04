@@ -3,10 +3,10 @@ const winston = require('winston');
 const config = require('config');
 const Logger = require('../Logger');
 const LoggerLevel = require('../LoggerLevel');
-const LoggerFactory = require('../LoggerFactory');
+const WinstonLoggerFactory = require('../WinstonLoggerFactory');
 const WinstonLogger = require('../WinstonLogger');
 
-const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/WinstonLogger_spec', config);
+const loggr = WinstonLoggerFactory.getLogger('@alt-javascript/logger/test/WinstonLogger_spec', config, winston);
 
 before(async () => {
   loggr.debug('spec setup started');
@@ -38,12 +38,14 @@ describe('WinstonLogger Specification', () => {
     const logger = new WinstonLogger(
       Logger.DEFAULT_CATEGORY, LoggerLevel.DEBUG, LoggerLevel.ENUMS, {}, winston, options,
     );
+    const factory = new WinstonLoggerFactory(config, winston);
 
     assert.equal(logger.category, Logger.DEFAULT_CATEGORY, 'logger.category === Logger.DEFAULT_CATEGORY');
     assert.equal(logger.levels, LoggerLevel.ENUMS, 'logger.levels === LoggerLevel.ENUMS');
     assert.equal(logger.level, LoggerLevel.ENUMS[LoggerLevel.DEBUG], 'logger.level === LoggerLevels.ENUMS[LoggerLevel.DEBUG]');
     assert.equal(logger.winston, winston, 'logger.winston == winston');
     assert.equal(logger.options, options, 'logger.options == options');
+    assert.exists(factory, 'factory exists');
   });
 
   it('Instantiate - default constructor args are set', () => {

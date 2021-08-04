@@ -1,4 +1,10 @@
-1.1.6 / 2021-07-30
+1.1.7 / 2021-07-30
+==================
+
+* Fix multilogger, node 10x compat - @craigparra
+  
+
+  1.1.6 / 2021-07-30
 ==================
 
 * README.md remove resources section - @craigparra 

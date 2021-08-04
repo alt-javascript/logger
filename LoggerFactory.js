@@ -7,6 +7,25 @@ const PlainTextFormatter = require('./PlainTextFormatter');
 module.exports = class LoggerFactory {
     static loggerCategoryCache = new LoggerCategoryCache();
 
+    static getGlobalRef() {
+      let $globalref = null;
+      if (LoggerFactory.detectBrowser()) {
+        $globalref = window;
+      } else {
+        $globalref = global;
+      }
+      return $globalref;
+    }
+
+    static getGlobalRoot(key) {
+      const $globalref = LoggerFactory.getGlobalRef();
+      let $key = ($globalref && $globalref.boot);
+      $key = $key && $key.contexts;
+      $key = $key && $key.root;
+      $key = $key && $key[`${key}`];
+      return $key;
+    }
+
     static detectBrowser() {
       const browser = !(typeof window === 'undefined');
       return browser;
@@ -18,14 +37,11 @@ module.exports = class LoggerFactory {
         // eslint-disable-next-line no-undef
         $config = config;
       }
-      if (global?.boot?.contexts?.root?.config) {
-        $config = global.boot.contexts.root.config;
+      if (LoggerFactory.getGlobalRoot('config')) {
+        $config = LoggerFactory.getGlobalRoot('config');
       }
       if (LoggerFactory.detectBrowser() && window?.config) {
         $config = window.config;
-      }
-      if (LoggerFactory.detectBrowser() && window?.boot?.contexts?.root?.config) {
-        $config = window.boot.contexts.root.config;
       }
       $config = configArg || $config;
       if ($config) {
