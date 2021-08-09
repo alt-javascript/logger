@@ -1,8 +1,13 @@
+1.1.9 / 2021-08-10
+==================
+
+* LoggerFactory now context aware - @craigparra
+  
 1.1.8 / 2021-08-07
 ==================
 
 * Change repos to org - @craigparra
-  
+
 1.1.7 / 2021-07-30
 ==================
 

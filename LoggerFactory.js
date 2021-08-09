@@ -111,7 +111,11 @@ module.exports = class LoggerFactory {
       }
     }
 
-    getLogger(category) {
+    getLogger(categoryArg) {
+      const category = (typeof categoryArg === 'string') ? categoryArg :
+          (categoryArg && categoryArg.qualifier)
+          || (categoryArg && categoryArg.name)
+          || (categoryArg && categoryArg.constructor && categoryArg.constructor.name);
       return new ConfigurableLogger(this.config,
         new ConsoleLogger(category,
           null, null, null,
