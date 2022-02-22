@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const config = require('config');
-const CachingConsole = require('../CachingConsole');
-const LoggerFactory = require('../LoggerFactory');
+const CachingConsole = require('../modules/CachingConsole');
+const LoggerFactory = require('../modules/LoggerFactory');
 
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingConsole_spec', config);
 

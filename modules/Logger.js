@@ -1,6 +1,6 @@
-const LoggerLevel = require('./LoggerLevel');
+import LoggerLevel from './LoggerLevel';
 
-module.exports = class Logger {
+export default class Logger {
   static DEFAULT_CATEGORY = 'ROOT'
 
   constructor(category, level, levels) {
@@ -40,4 +40,4 @@ module.exports = class Logger {
   isVerboseEnabled() {
     return this.isLevelEnabled(LoggerLevel.VERBOSE);
   }
-};
+}

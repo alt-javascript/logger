@@ -22,7 +22,39 @@
     "type": "git",
     "url": "https://github.com/alt-javascript/logger"
   },
-  "main": "index.js",
+  "main": "alt-javascript-logger-umd.js",
+  "module": "modules/index-all.js",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "import": {
+        "module": "./modules/index-all.js",
+        "browser": {
+          "production": "./alt-javascript-logger-esm-min.js",
+          "default": "./alt-javascript-logger-esm.js"
+        },
+        "node": "./alt-javascript-logger-node.mjs",
+        "default": "./alt-javascript-logger-esm.js"
+      },
+      "require": {
+        "browser": {
+          "production": "./alt-javascript-logger-umd-min.js",
+          "default": "./alt-javascript-logger-umd.js"
+        },
+        "node": "./alt-javascript-logger-node.cjs",
+        "default": "./alt-javascript-logger-umd.js"
+      },
+      "default": "./alt-javascript-logger-umd.js"
+    },
+    "./alt-javascript-logger*": "./alt-javascript-logger*",
+    "./modules/*": {
+      "require": "./cjs/*",
+      "default": "./modules/*"
+    },
+    "./amd/*": "./amd/*",
+    "./cjs/*": "./cjs/*",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "lint": "npx eslint \"./*.js\" \"./test/**/*.js\" --fix",
     "test": "npm run test:unit",

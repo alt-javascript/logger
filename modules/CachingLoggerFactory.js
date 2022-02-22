@@ -1,9 +1,9 @@
-const ConfigurableLogger = require('./ConfigurableLogger');
-const CachingConsole = require('./CachingConsole');
-const ConsoleLogger = require('./ConsoleLogger');
-const LoggerFactory = require('./LoggerFactory');
+import ConfigurableLogger from './ConfigurableLogger';
+import CachingConsole from './CachingConsole';
+import ConsoleLogger from './ConsoleLogger';
+import LoggerFactory from './LoggerFactory';
 
-module.exports = class CachingLoggerFactory extends LoggerFactory {
+export default class CachingLoggerFactory extends LoggerFactory {
   static getLogger(category, configArg, configPath, cache) {
     const $configArg = (typeof category === 'object' ? category : configArg);
     const $category = (typeof category === 'object' ? '' : category);
@@ -32,4 +32,4 @@ module.exports = class CachingLoggerFactory extends LoggerFactory {
       this.configPath,
       this.cache);
   }
-};
+}

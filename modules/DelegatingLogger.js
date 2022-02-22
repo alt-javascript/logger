@@ -1,4 +1,4 @@
-module.exports = class DelegatingLogger {
+export default class DelegatingLogger {
   constructor(provider) {
     this.provider = provider;
     if (!this.provider) {
@@ -65,4 +65,4 @@ module.exports = class DelegatingLogger {
   isVerboseEnabled() {
     return this.provider.isVerboseEnabled();
   }
-};
+}

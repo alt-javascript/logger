@@ -1,8 +1,8 @@
 const { assert } = require('chai');
 const winston = require('winston');
 const config = require('config');
-const Logger = require('../Logger');
-const LoggerLevel = require('../LoggerLevel');
+const Logger = require('../modules/Logger');
+const LoggerLevel = require('../modules/LoggerLevel');
 const WinstonLoggerFactory = require('../WinstonLoggerFactory');
 const WinstonLogger = require('../WinstonLogger');
 

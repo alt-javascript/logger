@@ -1,10 +1,10 @@
-const ConfigurableLogger = require('./ConfigurableLogger');
-const ConsoleLogger = require('./ConsoleLogger');
-const LoggerCategoryCache = require('./LoggerCategoryCache');
-const JSONFormatter = require('./JSONFormatter');
-const PlainTextFormatter = require('./PlainTextFormatter');
+import ConfigurableLogger from './ConfigurableLogger';
+import ConsoleLogger from './ConsoleLogger';
+import LoggerCategoryCache from './LoggerCategoryCache';
+import JSONFormatter from './JSONFormatter';
+import PlainTextFormatter from '../PlainTextFormatter';
 
-module.exports = class LoggerFactory {
+export default class LoggerFactory {
     static loggerCategoryCache = new LoggerCategoryCache();
 
     static getGlobalRef() {
@@ -137,4 +137,4 @@ module.exports = class LoggerFactory {
       const formatter = (format.toLowerCase() === 'text') ? new PlainTextFormatter() : new JSONFormatter();
       return formatter;
     }
-};
+}

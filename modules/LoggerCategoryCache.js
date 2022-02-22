@@ -1,4 +1,4 @@
-module.exports = class LoggerCategoryCache {
+export default class LoggerCategoryCache {
   constructor() {
     this.cache = {};
   }
@@ -10,4 +10,4 @@ module.exports = class LoggerCategoryCache {
   put(category, level) {
     this.cache[category] = level;
   }
-};
+}

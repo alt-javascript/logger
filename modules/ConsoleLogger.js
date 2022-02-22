@@ -1,8 +1,8 @@
-const Logger = require('./Logger');
-const LoggerLevel = require('./LoggerLevel');
-const JSONFormatter = require('./JSONFormatter');
+import Logger from './Logger';
+import LoggerLevel from './LoggerLevel';
+import JSONFormatter from './JSONFormatter';
 
-module.exports = class ConsoleLogger extends Logger {
+export default class ConsoleLogger extends Logger {
   constructor(category, level, levels, meta, formatter, consoleArg) {
     super(category, level, levels);
     this.formatter = formatter || new JSONFormatter();
@@ -49,4 +49,4 @@ module.exports = class ConsoleLogger extends Logger {
   fatal(message, meta) {
     this.log(LoggerLevel.FATAL, message, meta);
   }
-};
+}

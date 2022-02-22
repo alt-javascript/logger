@@ -1,4 +1,4 @@
-module.exports = class CachingConsole {
+export default class CachingConsole {
   static DEFAULT_SIZE = 1000;
 
   constructor(size, quiet) {
@@ -21,4 +21,4 @@ module.exports = class CachingConsole {
   clear() {
     this.cache = [];
   }
-};
+}

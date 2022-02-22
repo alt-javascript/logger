@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const Logger = require('./Logger');
-const LoggerLevel = require('./LoggerLevel');
+import _ from 'lodash';
+import Logger from './modules/Logger';
+import LoggerLevel from './modules/LoggerLevel';
 
-module.exports = class WinstonLogger extends Logger {
+export default class WinstonLogger extends Logger {
   // category, level, levels, meta, formatter, consoleArg
   constructor(category, level, levels, meta, winston, options) {
     super(category, level, levels);
@@ -68,4 +68,4 @@ module.exports = class WinstonLogger extends Logger {
   fatal(message, meta) {
     this.log(LoggerLevel.FATAL, message, meta);
   }
-};
+}

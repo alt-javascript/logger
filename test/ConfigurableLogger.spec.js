@@ -1,14 +1,14 @@
 const { assert } = require('chai');
 const { EphemeralConfig } = require('@alt-javascript/config');
 const config = require('config');
-const CachingConsole = require('../CachingConsole');
-const ConfigurableLogger = require('../ConfigurableLogger');
-const ConsoleLogger = require('../ConsoleLogger');
-const JSONFormatter = require('../JSONFormatter');
-const Logger = require('../Logger');
-const LoggerLevel = require('../LoggerLevel');
-const LoggerFactory = require('../LoggerFactory');
-const LoggerCategoryCache = require('../LoggerCategoryCache');
+const CachingConsole = require('../modules/CachingConsole');
+const ConfigurableLogger = require('../modules/ConfigurableLogger');
+const ConsoleLogger = require('../modules/ConsoleLogger');
+const JSONFormatter = require('../modules/JSONFormatter');
+const Logger = require('../modules/Logger');
+const LoggerLevel = require('../modules/LoggerLevel');
+const LoggerFactory = require('../modules/LoggerFactory');
+const LoggerCategoryCache = require('../modules/LoggerCategoryCache');
 
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/ConfigurableLogger_spec', config);
 

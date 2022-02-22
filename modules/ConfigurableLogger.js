@@ -1,7 +1,7 @@
-const DelegatingLogger = require('./DelegatingLogger');
-const Logger = require('./Logger');
+import DelegatingLogger from './DelegatingLogger';
+import Logger from './Logger';
 
-module.exports = class ConfigurableLogger extends DelegatingLogger {
+export default class ConfigurableLogger extends DelegatingLogger {
   static DEFAULT_CONFIG_PATH = 'logging.level';
 
   constructor(config, provider, category, configPath, cache) {
@@ -68,4 +68,4 @@ module.exports = class ConfigurableLogger extends DelegatingLogger {
     }
     return level;
   }
-};
+}

@@ -1,7 +1,7 @@
-const Logger = require('./Logger');
-const LoggerLevel = require('./LoggerLevel');
+import Logger from './Logger';
+import LoggerLevel from './LoggerLevel';
 
-module.exports = class MultiLogger extends Logger {
+export default class MultiLogger extends Logger {
   constructor(loggers, category, level, levels, meta) {
     super(category, level, levels, meta);
     this.loggers = loggers || [];
@@ -54,4 +54,4 @@ module.exports = class MultiLogger extends Logger {
   fatal(message, meta) {
     this.log(LoggerLevel.FATAL, message, meta);
   }
-};
+}

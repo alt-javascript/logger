@@ -1,11 +1,11 @@
 const { assert } = require('chai');
 const config = require('config');
-const CachingConsole = require('../CachingConsole');
-const ConsoleLogger = require('../ConsoleLogger');
-const JSONFormatter = require('../JSONFormatter');
-const Logger = require('../Logger');
-const LoggerLevel = require('../LoggerLevel');
-const LoggerFactory = require('../LoggerFactory');
+const CachingConsole = require('../modules/CachingConsole');
+const ConsoleLogger = require('../modules/ConsoleLogger');
+const JSONFormatter = require('../modules/JSONFormatter');
+const Logger = require('../modules/Logger');
+const LoggerLevel = require('../modules/LoggerLevel');
+const LoggerFactory = require('../modules/LoggerFactory');
 
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/ConsoleLogger_spec', config);
 

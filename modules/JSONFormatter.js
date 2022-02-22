@@ -1,6 +1,6 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
-module.exports = class JSONFormatter {
+export default class JSONFormatter {
   // eslint-disable-next-line class-methods-use-this
   format(timestamp, category, level, message, meta) {
     return JSON.stringify(
@@ -10,4 +10,4 @@ module.exports = class JSONFormatter {
       _.isPlainObject(meta) ? meta : { meta }),
     );
   }
-};
+}

@@ -46,3 +46,8 @@ node_modules/
 # Output of 'npm pack'
 *.tgz
 /.idea/
+
+test-treeshake/*-umd.js
+amd
+cjs
+/alt-javascript-logger-node-*-pre*

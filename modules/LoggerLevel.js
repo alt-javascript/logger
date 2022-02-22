@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ENUMS: {
     fatal: 0, error: 1, warn: 2, info: 3, verbose: 4, debug: 5,
   },
@@ -8,4 +8,4 @@ module.exports = {
   WARN: 'warn',
   ERROR: 'error',
   FATAL: 'fatal',
-};
+}

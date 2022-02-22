@@ -1,8 +1,8 @@
-const ConfigurableLogger = require('./ConfigurableLogger');
-const LoggerFactory = require('./LoggerFactory');
-const WinstonLogger = require('./WinstonLogger');
+import ConfigurableLogger from './modules/ConfigurableLogger';
+import LoggerFactory from './modules/LoggerFactory';
+import WinstonLogger from './WinstonLogger';
 
-module.exports = class WinstonLoggerFactory {
+export default class WinstonLoggerFactory {
   static getLogger(category, config, winston, options, configPath, cache) {
     // constructor(category, level, levels, meta, winston, options)
     return new ConfigurableLogger(config,
@@ -27,4 +27,4 @@ module.exports = class WinstonLoggerFactory {
       this.configPath,
       this.cache);
   }
-};
+}
