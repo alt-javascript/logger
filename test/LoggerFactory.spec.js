@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { assert } from 'chai';
 import { EphemeralConfig } from '@alt-javascript/config';
 import nodeconfig from 'config';
@@ -5,7 +6,6 @@ import CachingLoggerFactory from '../CachingLoggerFactory.js';
 import ConfigurableLogger from '../ConfigurableLogger.js';
 import Logger from '../Logger.js';
 import LoggerFactory from '../LoggerFactory.js';
-/* eslint-disable import/extensions */
 import LoggerCategoryCache from '../LoggerCategoryCache.js';
 
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/LoggerFactory_spec', nodeconfig);

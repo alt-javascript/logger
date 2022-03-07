@@ -1,10 +1,10 @@
+/* eslint-disable import/extensions */
 import { assert } from 'chai';
 import winston from 'winston';
 import config from 'config';
 import Logger from '../Logger.js';
 import LoggerLevel from '../LoggerLevel.js';
 import WinstonLoggerFactory from '../WinstonLoggerFactory.js';
-/* eslint-disable import/extensions */
 import WinstonLogger from '../WinstonLogger.js';
 
 const loggr = WinstonLoggerFactory.getLogger('@alt-javascript/logger/test/WinstonLogger_spec', config, winston);

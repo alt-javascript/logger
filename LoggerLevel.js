@@ -8,4 +8,4 @@ export default {
   WARN: 'warn',
   ERROR: 'error',
   FATAL: 'fatal',
-}
+};
