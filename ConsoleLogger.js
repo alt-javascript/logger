@@ -1,6 +1,7 @@
-import Logger from './Logger';
-import LoggerLevel from './LoggerLevel';
-import JSONFormatter from './JSONFormatter';
+/* eslint-disable import/extensions */
+import Logger from './Logger.js';
+import LoggerLevel from './LoggerLevel.js';
+import JSONFormatter from './JSONFormatter.js';
 
 export default class ConsoleLogger extends Logger {
   constructor(category, level, levels, meta, formatter, consoleArg) {

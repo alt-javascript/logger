@@ -1,6 +1,7 @@
-import ConfigurableLogger from './modules/ConfigurableLogger';
-import LoggerFactory from './modules/LoggerFactory';
-import WinstonLogger from './WinstonLogger';
+/* eslint-disable import/extensions */
+import ConfigurableLogger from './ConfigurableLogger.js';
+import LoggerFactory from './LoggerFactory.js';
+import WinstonLogger from './WinstonLogger.js';
 
 export default class WinstonLoggerFactory {
   static getLogger(category, config, winston, options, configPath, cache) {

@@ -1,8 +1,9 @@
-const { assert } = require('chai');
-const config = require('config');
-const Logger = require('../modules/Logger');
-const LoggerLevel = require('../modules/LoggerLevel');
-const LoggerFactory = require('../modules/LoggerFactory');
+/* eslint-disable import/extensions */
+import { assert } from 'chai';
+import config from 'config';
+import Logger from '../Logger.js';
+import LoggerLevel from '../LoggerLevel.js';
+import LoggerFactory from '../LoggerFactory.js';
 
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/Logger_spec', config);
 

@@ -1,10 +1,11 @@
-const { assert } = require('chai');
-const winston = require('winston');
-const config = require('config');
-const Logger = require('../modules/Logger');
-const LoggerLevel = require('../modules/LoggerLevel');
-const WinstonLoggerFactory = require('../WinstonLoggerFactory');
-const WinstonLogger = require('../WinstonLogger');
+import { assert } from 'chai';
+import winston from 'winston';
+import config from 'config';
+import Logger from '../Logger.js';
+import LoggerLevel from '../LoggerLevel.js';
+import WinstonLoggerFactory from '../WinstonLoggerFactory.js';
+/* eslint-disable import/extensions */
+import WinstonLogger from '../WinstonLogger.js';
 
 const loggr = WinstonLoggerFactory.getLogger('@alt-javascript/logger/test/WinstonLogger_spec', config, winston);
 

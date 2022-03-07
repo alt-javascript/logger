@@ -1,9 +1,9 @@
-const { assert } = require('chai');
-
-const config = require('config');
-const LoggerLevel = require('../modules/LoggerLevel');
-const LoggerFactory = require('../modules/LoggerFactory');
-const LoggerCategoryCache = require('../modules/LoggerCategoryCache');
+/* eslint-disable import/extensions */
+import { assert } from 'chai';
+import config from 'config';
+import LoggerLevel from '../LoggerLevel.js';
+import LoggerFactory from '../LoggerFactory.js';
+import LoggerCategoryCache from '../LoggerCategoryCache.js';
 
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/CachingConsole_spec', config);
 

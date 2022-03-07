@@ -1,8 +1,9 @@
-import ConfigurableLogger from './ConfigurableLogger';
-import ConsoleLogger from './ConsoleLogger';
-import LoggerCategoryCache from './LoggerCategoryCache';
-import JSONFormatter from './JSONFormatter';
-import PlainTextFormatter from '../PlainTextFormatter';
+/* eslint-disable import/extensions */
+import ConfigurableLogger from './ConfigurableLogger.js';
+import ConsoleLogger from './ConsoleLogger.js';
+import LoggerCategoryCache from './LoggerCategoryCache.js';
+import JSONFormatter from './JSONFormatter.js';
+import PlainTextFormatter from './PlainTextFormatter.js';
 
 export default class LoggerFactory {
     static loggerCategoryCache = new LoggerCategoryCache();

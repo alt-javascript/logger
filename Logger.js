@@ -1,4 +1,5 @@
-import LoggerLevel from './LoggerLevel';
+/* eslint-disable import/extensions */
+import LoggerLevel from './LoggerLevel.js';
 
 export default class Logger {
   static DEFAULT_CATEGORY = 'ROOT'

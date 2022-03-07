@@ -1,7 +1,8 @@
-import ConfigurableLogger from './ConfigurableLogger';
-import CachingConsole from './CachingConsole';
-import ConsoleLogger from './ConsoleLogger';
-import LoggerFactory from './LoggerFactory';
+/* eslint-disable import/extensions */
+import ConfigurableLogger from './ConfigurableLogger.js';
+import CachingConsole from './CachingConsole.js';
+import ConsoleLogger from './ConsoleLogger.js';
+import LoggerFactory from './LoggerFactory.js';
 
 export default class CachingLoggerFactory extends LoggerFactory {
   static getLogger(category, configArg, configPath, cache) {

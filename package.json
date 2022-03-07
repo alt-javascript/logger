@@ -23,8 +23,8 @@
     "url": "https://github.com/alt-javascript/logger"
   },
   "main": "alt-javascript-logger-umd.js",
-  "module": "modules/index-all.js",
-  "type": "commonjs",
+  "module": "modules/index.js",
+  "type": "module",
   "exports": {
     ".": {
       "import": {
@@ -56,20 +56,22 @@
     "./package.json": "./package.json"
   },
   "scripts": {
+    "bundle": "rollup -c && eslint alt-javascript-logger-esm.js",
     "lint": "npx eslint \"./*.js\" \"./test/**/*.js\" --fix",
     "test": "npm run test:unit",
     "test:unit": "npm run test:tdd",
-    "test:tdd": "mocha --require test/fixtures",
+    "test:tdd": "mocha --require test/fixtures/index.js",
     "coverage": "npm run nyc",
-    "mocha": "mocha --require test/fixtures",
+    "mocha": "mocha --require test/fixtures/index.js",
     "nyc": "nyc --reporter=json-summary --reporter=text-summary --reporter=lcov npm run test"
   },
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@alt-javascript/config": "^1.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
     "babel-eslint": "^10.1.0",
     "chai": "^4.3.4",
     "config": "^3.3.6",
@@ -77,10 +79,13 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-cucumber": "^1.4.0",
     "eslint-plugin-import": "^2.23.4",
+    "esm": "^3.2.25",
     "mocha": "^9.0.2",
     "npx": "^10.2.2",
     "nyc": "^15.1.0",
+    "rollup": "^2.69.2",
     "run-script-os": "^1.1.6",
+    "terser": "^5.12.0",
     "winston": "^3.3.3"
   }
 }

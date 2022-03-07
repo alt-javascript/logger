@@ -1,5 +1,6 @@
-import DelegatingLogger from './DelegatingLogger';
-import Logger from './Logger';
+/* eslint-disable import/extensions */
+import DelegatingLogger from './DelegatingLogger.js';
+import Logger from './Logger.js';
 
 export default class ConfigurableLogger extends DelegatingLogger {
   static DEFAULT_CONFIG_PATH = 'logging.level';

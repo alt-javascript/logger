@@ -1,6 +1,6 @@
-import _ from 'lodash';
-import Logger from './modules/Logger';
-import LoggerLevel from './modules/LoggerLevel';
+/* eslint-disable import/extensions */
+import Logger from './Logger.js';
+import LoggerLevel from './LoggerLevel.js';
 
 export default class WinstonLogger extends Logger {
   // category, level, levels, meta, formatter, consoleArg
@@ -41,7 +41,7 @@ export default class WinstonLogger extends Logger {
   }
 
   log(level, message, meta) {
-    const metaWithCategory = _.assignIn({}, _.assignIn(meta, { category: this.category }));
+    const metaWithCategory = { ...Object.assign(meta || {}, { category: this.category }) };
     this.winstonLogger.log({ level, message, meta: metaWithCategory });
   }
 

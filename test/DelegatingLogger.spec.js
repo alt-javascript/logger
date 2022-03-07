@@ -1,12 +1,13 @@
-const { assert } = require('chai');
-const config = require('config');
-const CachingConsole = require('../modules/CachingConsole');
-const ConsoleLogger = require('../modules/ConsoleLogger');
-const DelegatingLogger = require('../modules/DelegatingLogger');
-const JSONFormatter = require('../modules/JSONFormatter');
-const Logger = require('../modules/Logger');
-const LoggerLevel = require('../modules/LoggerLevel');
-const LoggerFactory = require('../modules/LoggerFactory');
+/* eslint-disable import/extensions */
+import { assert } from 'chai';
+import config from 'config';
+import CachingConsole from '../CachingConsole.js';
+import ConsoleLogger from '../ConsoleLogger.js';
+import DelegatingLogger from '../DelegatingLogger.js';
+import JSONFormatter from '../JSONFormatter.js';
+import Logger from '../Logger.js';
+import LoggerLevel from '../LoggerLevel.js';
+import LoggerFactory from '../LoggerFactory.js';
 
 const loggr = LoggerFactory.getLogger('@alt-javascript/logger/test/DelegatingLogger_spec', config);
 

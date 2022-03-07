@@ -1,5 +1,6 @@
-import Logger from './Logger';
-import LoggerLevel from './LoggerLevel';
+/* eslint-disable import/extensions */
+import Logger from './Logger.js';
+import LoggerLevel from './LoggerLevel.js';
 
 export default class MultiLogger extends Logger {
   constructor(loggers, category, level, levels, meta) {
