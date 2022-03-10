@@ -40,14 +40,29 @@ export default class ConsoleLogger extends Logger {
   }
 
   warn(message, meta) {
-    this.log(LoggerLevel.WARN, message, meta);
+    if (this.levels[LoggerLevel.WARN] <= this.level) {
+      // eslint-disable-next-line no-console
+      this.console.warn(
+        this.formatter.format((new Date()), this.category, LoggerLevel.WARN, message, meta),
+      );
+    }
   }
 
   error(message, meta) {
-    this.log(LoggerLevel.ERROR, message, meta);
+    if (this.levels[LoggerLevel.ERROR] <= this.level) {
+      // eslint-disable-next-line no-console
+      this.console.error(
+        this.formatter.format((new Date()), this.category, LoggerLevel.ERROR, message, meta),
+      );
+    }
   }
 
   fatal(message, meta) {
-    this.log(LoggerLevel.FATAL, message, meta);
+    if (this.levels[LoggerLevel.FATAL] <= this.level) {
+      // eslint-disable-next-line no-console
+      this.console.error(
+        this.formatter.format((new Date()), this.category, LoggerLevel.FATAL, message, meta),
+      );
+    }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/logger",
-  "version": "1.1.10",
+  "version": "2.0.0",
   "description": "A simple configurable logging facade for javascript.",
   "author": "",
   "keywords": [
@@ -25,45 +25,20 @@
   "main": "alt-javascript-logger-umd.js",
   "module": "modules/index.js",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": {
-        "module": "./modules/index-all.js",
-        "browser": {
-          "production": "./alt-javascript-logger-esm-min.js",
-          "default": "./alt-javascript-logger-esm.js"
-        },
-        "node": "./alt-javascript-logger-node.mjs",
-        "default": "./alt-javascript-logger-esm.js"
-      },
-      "require": {
-        "browser": {
-          "production": "./alt-javascript-logger-umd-min.js",
-          "default": "./alt-javascript-logger-umd.js"
-        },
-        "node": "./alt-javascript-logger-node.cjs",
-        "default": "./alt-javascript-logger-umd.js"
-      },
-      "default": "./alt-javascript-logger-umd.js"
-    },
-    "./alt-javascript-logger*": "./alt-javascript-logger*",
-    "./modules/*": {
-      "require": "./cjs/*",
-      "default": "./modules/*"
-    },
-    "./amd/*": "./amd/*",
-    "./cjs/*": "./cjs/*",
-    "./package.json": "./package.json"
-  },
   "scripts": {
-    "bundle": "rollup -c && eslint alt-javascript-logger-esm.js",
     "lint": "npx eslint \"./*.js\" \"./test/**/*.js\" --fix",
     "test": "npm run test:unit",
     "test:unit": "npm run test:tdd",
     "test:tdd": "mocha --require test/fixtures/index.js",
     "coverage": "npm run nyc",
     "mocha": "mocha --require test/fixtures/index.js",
-    "nyc": "nyc --reporter=json-summary --reporter=text-summary --reporter=lcov npm run test"
+    "nyc": "nyc --reporter=json-summary --reporter=text-summary --reporter=lcov npm run test",
+    "bundle": "rollup -c",
+    "minify-iife": "terser dist/alt-javascript-loggerfactory-iife.js -c  ",
+    "minify-esm": "terser dist/alt-javascript-logger-esm.js -c  ",
+    "build-iife": "npm run minify-iife -- -o dist/alt-javascript-loggerfactory-iife-min.js --source-map",
+    "build-esm": "npm run minify-esm -- -o dist/alt-javascript-logger-esm-min.js --source-map",
+    "build": "npm run bundle && npm run build-iife && npm run build-esm"
   },
   "license": "MIT",
   "dependencies": {
@@ -71,7 +46,6 @@
   },
   "devDependencies": {
     "@alt-javascript/config": "^1.0.2",
-    "@rollup/plugin-node-resolve": "^13.1.3",
     "babel-eslint": "^10.1.0",
     "chai": "^4.3.4",
     "config": "^3.3.6",

@@ -58,7 +58,7 @@ export default class LoggerFactory {
         // eslint-disable-next-line no-undef
         $loggerFactory = loggerFactory;
       }
-      if (global?.boot?.contexts?.root?.loggerFactory) {
+      if (!(typeof global === 'undefined') && global?.boot?.contexts?.root?.loggerFactory) {
         $loggerFactory = global.boot.contexts.root.loggerFactory;
       }
       if (LoggerFactory.detectBrowser() && window?.loggerFactory) {

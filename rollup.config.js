@@ -1,7 +1,7 @@
 export default [
-  // Monolithic ESM bundle for browsers and demo.
+  // Monolithic ESM bundle for browser module implementation.
   {
-    input: 'index.js',
+    input: 'index-browser.js',
     treeshake: true,
     output: {
       file: 'dist/alt-javascript-logger-esm.js',
@@ -9,48 +9,22 @@ export default [
       strict: false,
       externalLiveBindings: false,
       freeze: false,
-      sourcemap: true,
+      sourcemap: false,
       sourcemapExcludeSources: true,
     },
   },
+  // IIFE bundle for browsers global import.
   {
-    input: 'index-browser.js',
+    input: 'LoggerFactory.js',
     treeshake: true,
     output: {
-      file: 'dist/test-esm.js',
-      format: 'esm',
-      strict: false,
-      externalLiveBindings: false,
-      freeze: false,
-      sourcemap: true,
-      sourcemapExcludeSources: true,
-    },
-  },
-  {
-    input: 'index-browser.js',
-    treeshake: true,
-    output: {
-      file: 'dist/test-iife.js',
+      file: 'dist/alt-javascript-loggerfactory-iife.js',
       format: 'iife',
-      name: 'alt',
+      name: 'LoggerFactory',
       strict: false,
       externalLiveBindings: false,
       freeze: false,
-      sourcemap: true,
-      sourcemapExcludeSources: true,
-    },
-  },
-  {
-    input: 'index.js',
-    treeshake: true,
-    output: {
-      file: 'dist/alt-javascript-logger-umd.js',
-      name: 'alt',
-      format: 'umd',
-      strict: false,
-      externalLiveBindings: false,
-      freeze: false,
-      sourcemap: true,
+      sourcemap: false,
       sourcemapExcludeSources: true,
     },
   },
