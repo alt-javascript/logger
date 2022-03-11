@@ -80,11 +80,11 @@ as follows:
    <script src="https://cdn.jsdelivr.net/npm/@alt-javascript/config/dist/alt-javascript-configfactory-iife.js"></script>
    <script>
        var config = ConfigFactory.getConfig({
-           "logging" : {
-               "format" : 'json',
-               "level" : {
-                   "/" : "info",
-                   "/MyPage" : "debug"
+           logging : {
+               format : 'json',
+               level : {
+                   '/' : 'info',
+                   '/MyPage': 'info'
                }
            }
        })
