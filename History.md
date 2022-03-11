@@ -1,3 +1,10 @@
+2.0.0 / 2022-03-11
+==================
+
+* Migrate to ESM module standard
+* Browser native support for IIFE and EMS bundles
+* Replace lodash dependency with JavaScript native alternatives
+  
 1.1.10 / 2021-10-08
 ==================
 

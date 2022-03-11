@@ -42,7 +42,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@alt-javascript/config": "^1.0.2",
