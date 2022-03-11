@@ -1,9 +1,14 @@
+2.0.1 / 2022-03-11
+==================
+
+* GitHub workflow - @craigparra
+  
 2.0.0 / 2022-03-11
 ==================
 
-* Migrate to ESM module standard
-* Browser native support for IIFE and EMS bundles
-* Replace lodash dependency with JavaScript native alternatives
+* Migrate to ESM module standard - @craigparra
+* Browser native support for IIFE and EMS bundles - @craigparra
+* Replace lodash dependency with JavaScript native alternatives - @craigparra
   
 1.1.10 / 2021-10-08
 ==================
