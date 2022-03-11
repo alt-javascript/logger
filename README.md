@@ -9,7 +9,7 @@ A Simple Log Facade for JavaScript
 
 <a name="intro">Introduction</a>
 --------------------------------
-A simple configurable logging facade for javascript, using the popular [config](https://www.npmjs.com/package/config)
+A simple configurable logging facade for JavaScript, using the popular [config](https://www.npmjs.com/package/config)
 package interface.
 
 <a name="usage">Usage</a>
@@ -21,8 +21,8 @@ To use the module, import the LoggerFactory and call the `getLogger` function wi
 requires path is a sensible choice).
 
 ```javascript
-const config = require('config');
-const {LoggerFactory} = require('@alt-javascript/logger');
+import config from 'config';
+import { LoggerFactory } from '@alt-javascript/logger';
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule',config);
 
 logger.info('Hello world!');
@@ -46,16 +46,16 @@ following in your [config](https://www.npmjs.com/package/config) files.
 
 ### @alt-javascript/boot
 
-The LoggerSyntax is more fluent if you combine  
+The Logger syntax is more fluent if you combine  
 [@alt-javascript/boot](https://www.npmjs.com/package/@alt-javascript/boot) and 
 [@alt-javascript/config](https://www.npmjs.com/package/@alt-javascript/config) to bind the LoggerFactory 
 to the global root context, freeing your sub-modules from requiring and injecting the config.  
 
 `MyModule.js`
 ```javascript
-const {config} = require('@alt-javascript/config');
-const {LoggerFactory} = require('@alt-javascript/logger');
-const {boot} = require('@alt-javascript/boot');
+import config from '@alt-javascript/config';
+import { LoggerFactory } from '@alt-javascript/logger';
+import { boot } from '@alt-javascript/boot';
 boot({config:config});
 
 ```
@@ -64,10 +64,42 @@ Then in your application modules, you only need.
 
 `MyModule.js`
 ```javascript
-const {LoggerFactory} = require('@alt-javascript/logger');
+import { LoggerFactory } from '@alt-javascript/logger';
 
 const logger = LoggerFactory.getLogger('@myorg/mypackage/MyModule');
 logger.info('Hello from MyModule!')
+```
+### Browser
+
+The module is also able to be used directly in the browser, in combination with the config module.
+You can either import the LoggerFactory globally as an IIFE (Immediately Invoked Function Expression),
+as follows:
+
+```html
+   <script src="https://cdn.jsdelivr.net/npm/@alt-javascript/logger/dist/alt-javascript-loggerfactory-iife.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@alt-javascript/config/dist/alt-javascript-configfactory-iife.js"></script>
+   <script>
+       var config = ConfigFactory.getConfig({
+           "logging" : {
+               "format" : 'json',
+               "level" : {
+                   "/" : "info",
+                   "/MyPage" : "debug"
+               }
+           }
+       })
+       var logger = LoggerFactory.getLogger('/MyPage',config);
+       logger.debug('Hello World');
+   </script>
+```
+
+Or import the ES6 module bundle from a module, as follows:
+
+```javascript
+import { LoggerFactory } from 'https://cdn.jsdelivr.net/npm/@alt-javascript/logger/dist/alt-javascript-logger-esm.js'
+import { ConfigFactory } from 'https://cdn.jsdelivr.net/npm/@alt-javascript/logger/dist/alt-javascript-config-esm.js'
+
+//...as above
 ```
 
 ### Log Levels
@@ -133,8 +165,8 @@ Testing loggers is hard, and testability is a first class concern at @alt-javasc
 'CachingLoggerFactory' that will provide a logger implementation that will capture log lines that can be asserted.
 
 ```javascript
-const config = require('config');
-const {CachingLoggerFactory} = require('@alt-javascript/logger');
+import config from 'config';
+import { CachingLoggerFactory } from '@alt-javascript/logger';
 const logger = CachingLoggerFactory.getLogger('@myorg/mypackage/MyModule', config);
 
 logger.info('Hello world!');
@@ -149,4 +181,4 @@ assert.isTrue(logger.provider.console.cache[0].contains('Hello world!'))
 
 May be freely distributed under the [MIT license](https://raw.githubusercontent.com/craigparra/alt-logger/master/LICENSE).
 
-Copyright (c) 2021 Craig Parravicini    
+Copyright (c) 2021-2022 Craig Parravicini    
