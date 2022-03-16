@@ -18,6 +18,28 @@ export default class CachingConsole {
     }
   }
 
+  debug(line) {
+    this.cache.push(line);
+    if (this.cache.length > this.size) {
+      this.cache.shift();
+    }
+    if (!this.quiet) {
+      // eslint-disable-next-line no-console
+      console.debug(line);
+    }
+  }
+
+  info(line) {
+    this.cache.push(line);
+    if (this.cache.length > this.size) {
+      this.cache.shift();
+    }
+    if (!this.quiet) {
+      // eslint-disable-next-line no-console
+      console.info(line);
+    }
+  }
+
   warn(line) {
     this.cache.push(line);
     if (this.cache.length > this.size) {
