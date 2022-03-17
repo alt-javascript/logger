@@ -179,6 +179,6 @@ assert.isTrue(logger.provider.console.cache[0].contains('Hello world!'))
 <a name="license">License</a>
 -----------------------------
 
-May be freely distributed under the [MIT license](https://raw.githubusercontent.com/craigparra/alt-logger/master/LICENSE).
+May be freely distributed under the [MIT license](https://raw.githubusercontent.com/alt-javascript/logger/main/LICENSE).
 
 Copyright (c) 2021-2022 Craig Parravicini    
