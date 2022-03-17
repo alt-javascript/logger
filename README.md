@@ -3,9 +3,9 @@ A Simple Log Facade for JavaScript
 
 [![NPM](https://nodei.co/npm/@alt-javascript/logger.svg?downloads=true&downloadRank=true)](https://nodei.co/npm/@alt-javascript/logger/)
 <br/>
-![Language Badge](https://img.shields.io/github/languages/top/craigparra/alt-logger)
+![Language Badge](https://img.shields.io/github/languages/@alt-javascript/logger)
 ![Package Badge](https://img.shields.io/npm/v/@alt-javascript/logger) <br/>
-[release notes](https://github.com/craigparra/alt-logger/blob/main/History.md)
+[release notes](https://github.com/@alt-javascript/logger/blob/main/History.md)
 
 <a name="intro">Introduction</a>
 --------------------------------
