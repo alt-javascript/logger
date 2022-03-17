@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/logger",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A simple configurable logging facade for javascript.",
   "author": "",
   "keywords": [
@@ -17,7 +17,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "homepage": "https://github.com/al-javascript/logger#readme",
+  "homepage": "https://github.com/alt-javascript/logger#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/alt-javascript/logger"
