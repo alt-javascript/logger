@@ -32,15 +32,18 @@
     "coverage": "npm run c8",
     "mocha": "mocha --require test/fixtures/index.js",
     "c8": "c8 --reporter=json-summary --reporter=text-summary --reporter=lcov npm run test",
-    "bundle": "rollup -c",
+    "bundle": "npm run webify && rollup -c && npm run unwebify",
     "minify-iife": "terser dist/alt-javascript-loggerfactory-iife.js -c  ",
     "minify-esm": "terser dist/alt-javascript-logger-esm.js -c  ",
     "build-iife": "npm run minify-iife -- -o dist/alt-javascript-loggerfactory-iife-min.js --source-map",
     "build-esm": "npm run minify-esm -- -o dist/alt-javascript-logger-esm-min.js --source-map",
-    "build": "npm run bundle && npm run build-iife && npm run build-esm"
+    "build": "npm run bundle && npm run build-iife && npm run build-esm",
+    "webify": "shx sed -i 's/[*][*]/\\/\\/**/g' index.js",
+    "unwebify": "shx sed -i 's/\\/\\/[*][*]/**/g' index.js"
   },
   "license": "MIT",
   "dependencies": {
+    "shx": "^0.3.4"
   },
   "devDependencies": {
     "@alt-javascript/config": "^1.0.2",

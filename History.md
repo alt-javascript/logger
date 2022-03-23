@@ -1,3 +1,8 @@
+2.0.4 / 2022-03-23
+==================
+
+* automate browser excludes from bundle - @craigparra
+  
 2.0.4 / 2022-03-17
 ==================
 

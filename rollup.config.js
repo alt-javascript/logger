@@ -1,7 +1,7 @@
 export default [
   // Monolithic ESM bundle for browser module implementation.
   {
-    input: 'index-browser.js',
+    input: 'index.js',
     treeshake: true,
     output: {
       file: 'dist/alt-javascript-logger-esm.js',

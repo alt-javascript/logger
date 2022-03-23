@@ -263,15 +263,30 @@ var LoggerFactory = (function () {
     }
 
     debug(message, meta) {
-      this.log(LoggerLevel.DEBUG, message, meta);
+      if (this.levels[LoggerLevel.DEBUG] <= this.level) {
+        // eslint-disable-next-line no-console
+        this.console.debug(
+          this.formatter.format((new Date()), this.category, LoggerLevel.DEBUG, message, meta),
+        );
+      }
     }
 
     verbose(message, meta) {
-      this.log(LoggerLevel.VERBOSE, message, meta);
+      if (this.levels[LoggerLevel.VERBOSE] <= this.level) {
+        // eslint-disable-next-line no-console
+        this.console.info(
+          this.formatter.format((new Date()), this.category, LoggerLevel.VERBOSE, message, meta),
+        );
+      }
     }
 
     info(message, meta) {
-      this.log(LoggerLevel.INFO, message, meta);
+      if (this.levels[LoggerLevel.INFO] <= this.level) {
+        // eslint-disable-next-line no-console
+        this.console.info(
+          this.formatter.format((new Date()), this.category, LoggerLevel.INFO, message, meta),
+        );
+      }
     }
 
     warn(message, meta) {
