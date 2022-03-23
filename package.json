@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/logger",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A simple configurable logging facade for javascript.",
   "author": "",
   "keywords": [
@@ -43,7 +43,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "shx": "^0.3.4"
   },
   "devDependencies": {
     "@alt-javascript/config": "^1.0.2",
@@ -59,6 +58,7 @@
     "npx": "^10.2.2",
     "rollup": "^2.69.2",
     "run-script-os": "^1.1.6",
+    "shx": "^0.3.4",
     "terser": "^5.12.0",
     "winston": "^3.3.3"
   }
